@@ -1,0 +1,62 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>品牌商品监测</title>
+<!-- fix the confliction between jquery-sparkline and semantic-ui -->
+<style>
+.jqstooltip{
+    width: auto !important;
+    height: auto !important;
+}
+.container{
+    width: 600px;
+    margin: 0 auto;
+}
+</style>
+</head>
+
+<body>
+
+<div id='spark-x-values' values='{{x_values|join:","}}'></div>
+
+<div class="container">
+
+    <form method='GET'>
+        <div class='ui stackable' id='datepicker_menu'>
+            <div class='ui input labeled'>
+                <div class='ui label'>开始日期</div>
+                <input type='text' id='start_date' name='start_date' value='{{start_date}}'>
+            </div>
+            <div class='ui input labeled'>
+                <div class='ui label'>结束日期</div>
+                <input type='text' id='end_date' name='end_date' value='{{end_date}}'>
+            </div>
+            <input type='submit' class='ui button green' value='GO'>
+        </div>
+        <input type='hidden' name='brand' value='{{brand}}'>
+    </form>
+
+    <table class='ui table comptact'>
+    {% for r in result %}
+    <tr>
+        <td>{{r.name}}</td>
+        <td><span class='sparklines' values='{{r.chart_data|join:","}}'></span></td>
+    </tr>
+    {% endfor %}
+    </table>
+</div>
+
+
+<link href="//cdn.bootcss.com/semantic-ui/2.1.4/semantic.min.css" rel="stylesheet" type="text/css" >
+<link href="//cdn.bootcss.com/jqueryui/1.12.0/jquery-ui.min.css" rel="stylesheet">
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/jqueryui/1.12.0/jquery-ui.min.js"></script>
+<script src="{% static "vendor/bower-jquery-sparkline/dist/jquery.sparkline.retina.js" %}"></script>
+<script src="{% static "js/monitor/monitor_brand_items.js" %}"></script>
+</body>
+
+
+</html>

@@ -1,0 +1,24 @@
+<html>
+<head>
+<style>
+a{
+    text-decoration: none;
+    font-size:18px;
+    color:#3a3a3a;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+li{
+    font-size:18px;
+    padding-bottom: 5px;
+}
+</style>
+</head>
+<body>
+<ol>
+    {% for u in urls %}
+    <li><a href="{{u.url}}">{{u.name}}</a></li>
+    {% endfor %}
+</ol>
+</body>
+</html>

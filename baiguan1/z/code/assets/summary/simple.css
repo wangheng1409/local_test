@@ -1,0 +1,16 @@
+*{
+    color:#3a3a3a;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+table{
+    border-collapse: collapse;
+    border-color: #aaa;
+    border: 1px solid #aaa;
+}
+td,th{
+    padding: 10px;
+}
+
+h3{
+    margin-bottom: 5px;
+}

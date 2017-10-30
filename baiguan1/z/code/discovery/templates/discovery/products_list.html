@@ -1,0 +1,128 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>超盟 - 发现新品</title>
+    <link href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/discovery/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/discovery/products_list.css' %}">
+</head>
+<body>
+<div>
+  <!-- 导航栏 -->
+    <div class="nav-wrapper">
+        <div class="nav">
+            <div class="nav-title">
+                <a href="">超盟数据(新品)</a>
+            </div>
+            <ul class="nav-list">
+                <li>
+                    <a href="discovery" class="current-color">发现新品</a>
+                </li>
+                <li>
+                    <a href="collect">收藏</a>
+                </li>
+            </ul>
+            <div class="nav-webmaster">
+                <a href="javascript:">帐号</a>
+            </div>
+        </div>
+    </div>
+    <!-- 内容 -->
+    <div class="con-wrapper">
+        <div class="con-product">
+            <div class="con-date-choice">
+                <div class="con-city">
+                    <div class="ui selection dropdown">
+                        <i class="dropdown icon"></i>
+                        <!-- 城市／地区 -->
+                        <div class="text" id="city_name" name="{{ code }}" area="{{ area }}"></div>
+                        <div class="menu city-list" id="city_list"></div>
+                    </div>
+                </div>
+                <div class="con-date">
+                    <!-- 日期 -->
+                    <ul class="con-date-list" name="{{ grand }}">
+                        <li>
+                            <a href="javascript:" class="date" sign="grand" name="daily">昨天</a>
+                        </li>
+                        <li>
+                            <a href="javascript:" class="date" sign="grand" name="weekly">最近一周</a>
+                        </li>
+                        <li>
+                            <a href="javascript:" class="date" sign="grand" name="monthly">最近一月</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="con-class-choice">
+                <div class="con-class-all">
+                    <div class="con-class-btn">
+                        <div class="con-cat-list">
+                            <button class="yellow ui button" id="category_btn">
+                                <i class="list icon"></i>
+                                <span>全部商品分类</span>
+                            </button>
+                            <!-- 商品分类 -->
+                            <div class="ui orange vertical buttons create-list" id="category" name="{{ std_cat }}"></div>
+                        </div>
+                        <!-- 排序方式 -->
+                        <input id="order" hidden="hidden" name="{{ o }}"></input>
+                        <button class="mini ui button sort" name="score" sign="order">综合排名</button>
+                        <button class="mini ui button sort" name="growth" sign="order">增长最快</button>
+                    </div>
+                    <div class="con-class-shop">
+                        <!-- 商城 -->
+                        <ul class="con-class-list" id="shop_name" source="{{ mall }}">
+                            <li>
+                                <a href="javascript:" class="mall" name="tmall" sign="source">天猫商城</a>
+                            </li>
+                            <li>
+                                <a href="javascript:" class="mall" name="yhd" sign="source">1号店商城</a>
+                            </li>
+                            <li>
+                                <a href="javascript:" class="mall" name="feiniu"  sign="source">飞牛商城</a>
+                            </li>
+                        </ul>
+                        <div class="page-num">
+                            <b>
+                                <!-- 当前页数 -->
+                                <span class="current-date" id="current_page">{{ page }}</span>
+                                /
+                                <!-- 总页数 -->
+                                <span id="total_page">{{ total }}</span>
+                            </b>
+                            <div class="ui mini pagination menu">
+                                <a href="javascript:" class="active item pre-page"  sign="pre-page"><i class="angle left icon"></i></a>
+                                <a href="javascript:" class="active item next-page" sign="next-page"><i class="angle right icon"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-wrapper">
+                <div class="grading">
+                    <!-- 商品分级处理 -->
+                    <div class="ui small breadcrumb" id="breadcrumb"></div>
+                </div>
+                <!-- 商品列表 -->
+                <ul class="con-list" id="con_list"></ul>
+                <div class="pagination">
+                    <!-- 分页 -->
+                    <div class="mini ui pagination menu">
+                        <a href="javascript:" class="item pre-page" sign="pre-page">上一页</a>
+                        <a href="javascript:" class="item next-page" sign="next-page" id="next_page">下一页</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+<script type="text/javascript" src="{% static 'js/discovery/acquire_categray.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/discovery/soluve_csrf.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/discovery/products_list.js' %}"></script>
+</html>

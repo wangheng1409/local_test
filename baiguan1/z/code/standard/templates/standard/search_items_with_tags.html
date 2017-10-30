@@ -1,0 +1,119 @@
+{% load staticfiles %}
+{% load humanize %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Search items</title>
+<link href="//cdn.bootcss.com/semantic-ui/2.1.4/semantic.min.css" rel="stylesheet" type="text/css" >
+<style>
+body{
+  /*width: 1200px;*/
+    margin: 0 auto;
+    position: relative;
+}
+.container{
+    margin: 20px auto;
+    width:1000px;
+}
+
+.custom input{
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 0px;
+}
+
+.custom{
+    position: fixed;
+    right: 10%;
+    background-color: black;
+    padding: 10px;
+}
+
+ul li{
+  margin-bottom:10px;
+}
+
+.std{
+  margin-top: 5px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <form method='POST'>
+            <div class='ui icon input'>
+              {{form.q}}
+              <i class='search icon'></i>
+            </div>
+    </form>
+
+    <div class="ui statistic">
+      <div class="value">
+        {{items|length|intcomma}}
+      </div>
+      <div class="label">
+        商品
+      </div>
+    </div>
+
+    <button class="ui green icon button" id='refresh-button'><i class="refresh icon"></i></button>
+
+    <div class="ui divider"></div>
+
+    <div class='ui grid'>
+        <div class='ui wide column'>
+            <table class='ui table compact selectable'>
+                {% for item in items %}
+                <tr>
+                    <td><button class='circular basic mini ui icon button remove-btn'><i class="mini remove icon"></i></button></td>
+                    <td item-id='{{item.id}}'>{{item.name}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.store_name}}</td>
+                    <td>
+                        <div class='ui labels'>
+                        {% for k in item.keywords %}
+                            {% if k in keywords %}
+                                <span class='ui label red'>{{k}}</span>
+                            {% else %}
+                                <span class='ui label grey'>{{k}}</span>
+                            {% endif %}
+                        {% endfor %}
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+<script src='//cdn.bootcss.com/jquery/3.1.0/jquery.min.js'></script>
+<script>
+$(function(){
+    $('.remove-btn').click(function(e){
+        $(this).parent().parent().remove();
+    });
+
+    $('#refresh-button').click(function(e){
+        e.preventDefault();
+        var itemIds = [];
+        var items = $('*[item-id]');
+        for(var i=0; i < items.length; i++){
+            itemIds.push($(items[i]).attr('item-id'));
+        }
+
+        var that = $(this);
+        $(this).addClass('loading');
+        $.post('/standards/update-item-keywords', {'q': itemIds.join(',')}, function(data){
+          that.removeClass('loading');
+        });
+
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Label Clusters</title>
+<link href="http://cdn.bootcss.com/semantic-ui/2.1.4/semantic.min.css" rel="stylesheet" type="text/css" >
+<style>
+.container{
+    margin: 20px auto;
+    width:800px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  {% for c in clusters %}
+    <b>## - {{c.0}}</b><br>
+    <ul>
+    {% for item in c.1 %}
+      <li>{{item}}</li>
+    {% endfor %}
+    </ul>
+    <hr>
+  {% endfor %}
+</div>
+
+</body>
+</html>

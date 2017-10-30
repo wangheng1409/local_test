@@ -1,0 +1,346 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>超盟 - 门店分析</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/analytics/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/analytics/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/analytics/store-analysis.css' %}">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <div class="nav">
+        <div class="logo">
+            <img src="{% static 'images/logo.jpg' %}">
+            <h3>连锁数据分析</h3>
+            <div class="homepage">
+                <span>首页</span>
+                <div class="triangle"></div>
+            </div>
+        </div>
+        <div class="user-heads">
+            <img src="{% static 'images/heads.png' %}">
+        </div>
+    </div>
+    <div class="wrap" id="wrap">
+        <!-- 侧边栏 -->
+        <div class="sidebar" id="sidebar">
+            <div class="management-analysis">
+                <div class="title">
+                    <img src="{% static 'images/store.png'%}">
+                    <span>经营分析</span>
+                </div>
+                <div class="options">
+                    <a href="/analytics/chain-stores/store-overview">总体概况</a>
+                    <a class="sidebar-color" href="/analytics/chain-stores/stores/store-analysis">门店分析</a>
+                </div>
+            </div>
+            <div class="optimize-structure">
+                <div class="structure-title">
+                    <img src="{% static 'images/store.png'%}">
+                    <span>商品结构优化</span>
+                </div>
+            </div>
+        </div>
+        <!-- 内容 -->
+        <div class="content">
+            <div class="menu">
+                <span>门店分析</span>
+                <div class="menu-options">
+                    <div class="store-type">
+                        <span class="store-color">连锁</span>
+                        <span>加盟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="all-stores">
+                <div class="store-options-module">
+                    <div class="total">
+                        <p>所有门店</p>
+                        <div class="store-options">
+                            <div class="search">
+                                <input type="text" placeholder="查找指定门店" id="keywords"></input>
+                                <img src="{% static 'images/search.png' %}"  id="search">
+                            </div>
+                            <ul class="date" id="day">
+                                <li  day='1'>今天</li>
+                                <li class="date-choiced"  day="2">当周</li>
+                                <li  day="3">当月</li>
+                                <li  day="4">年</li>
+                            </ul>
+                            <div class="download">
+                                <img src="{% static 'images/download.png' %}">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 列表 -->
+                    <table class="area-list">
+                        <thead>
+                            <tr id="new_row">
+                                <th>序号</th>
+                                <th>门店</th>
+                                <th class="add-button">
+                                    <img src="{% static 'images/add.png' %}"  id="open_add_items">
+                                    <div class="add-items hide" id="add-items">
+                                        <div class="add-items-title">
+                                            <span>设置查看的指标</span>
+                                            <img src="{% static 'images/close.png' %}" id="close_add_items">
+                                        </div>
+                                        <div class="checkbox-wrap">
+                                            <ul class="checkbox-list" id="add_row">
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" tag="target">
+                                                        销售任务
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" tag="sales">
+                                                        实际完成金额
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" tag="over_sale_percent">
+                                                        完成率
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" tag="balance">
+                                                        差额
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" tag="gross_profit">
+                                                        毛利额
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" tag="gross_profit_rate">
+                                                        毛利率
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" tag="sales_growth">
+                                                        销售额增长环比
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="choice-button">
+                                            <div class="float-right">
+                                                <input type="button" value="取消" id="cancel"></input>
+                                                <input class="btn-color" type="submit" value="确定" id="add_row1"></input>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id='store_list'>
+                            </tr>
+<!--                             <tr>
+                                <td>1</td>
+                                <td>
+                                    <a href="" title="">每一天便利店(未央区)</a>
+                                </td>
+                                <td>35,147</td>
+                                <td>68%</td>
+                                <td>9.64</td>
+                                <td>
+                                    <img src="{% static 'images/up.png' %}">
+                                    <span>29.55%</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <a href="" title="">每一天便利店(未央区)</a>
+                                </td>
+                                <td>35,147</td>
+                                <td>68%</td>
+                                <td>9.64</td>
+                                <td>
+                                    <img src="{% static 'images/up.png' %}">
+                                    <span>29.55%</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <a href="" title="">每一天便利店(未央区)</a>
+                                </td>
+                                <td>35,147</td>
+                                <td>68%</td>
+                                <td>9.64</td>
+                                <td>
+                                    <img src="{% static 'images/up.png' %}">
+                                    <span>29.55%</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <a href="" title="">每一天便利店(未央区)</a>
+                                </td>
+                                <td>35,147</td>
+                                <td>68%</td>
+                                <td>9.64</td>
+                                <td>
+                                    <img src="{% static 'images/up.png' %}">
+                                    <span>29.55%</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <a href="" title="">每一天便利店(未央区)</a>
+                                </td>
+                                <td>35,147</td>
+                                <td>68%</td>
+                                <td>9.64</td>
+                                <td>
+                                    <img src="{% static 'images/up.png' %}">
+                                    <span>29.55%</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <a href="" title="">每一天便利店(未央区)</a>
+                                </td>
+                                <td>35,147</td>
+                                <td>68%</td>
+                                <td>9.64</td>
+                                <td>
+                                    <img src="{% static 'images/up.png' %}">
+                                    <span>29.55%</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <a href="" title="">每一天便利店(未央区)</a>
+                                </td>
+                                <td>35,147</td>
+                                <td>68%</td>
+                                <td>9.64</td>
+                                <td>
+                                    <img src="{% static 'images/up.png' %}">
+                                    <span>29.55%</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <a href="" title="">每一天便利店(未央区)</a>
+                                </td>
+                                <td>35,147</td>
+                                <td>68%</td>
+                                <td>9.64</td>
+                                <td>
+                                    <img src="{% static 'images/up.png' %}">
+                                    <span>29.55%</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <a href="" title="">每一天便利店(未央区)</a>
+                                </td>
+                                <td>35,147</td>
+                                <td>68%</td>
+                                <td>9.64</td>
+                                <td>
+                                    <img src="{% static 'images/up.png' %}">
+                                    <span>29.55%</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <a href="" title="">每一天便利店(未央区)</a>
+                                </td>
+                                <td>35,147</td>
+                                <td>68%</td>
+                                <td>9.64</td>
+                                <td>
+                                    <img src="{% static 'images/up.png' %}">
+                                    <span>29.55%</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <a href="" title="">每一天便利店(未央区)</a>
+                                </td>
+                                <td>35,147</td>
+                                <td>68%</td>
+                                <td>9.64</td>
+                                <td>
+                                    <img src="{% static 'images/up.png' %}">
+                                    <span>29.55%</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <a href="" title="">每一天便利店(未央区)</a>
+                                </td>
+                                <td>35,147</td>
+                                <td>68%</td>
+                                <td>9.64</td>
+                                <td>
+                                    <img src="{% static 'images/up.png' %}">
+                                    <span>29.55%</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <a href="" title="">每一天便利店(未央区)</a>
+                                </td>
+                                <td>35,147</td>
+                                <td>68%</td>
+                                <td>9.64</td>
+                                <td>
+                                    <img src="{% static 'images/up.png' %}">
+                                    <span>29.55%</span>
+                                </td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                    <!-- 分页 -->
+                    <div class="pagination-wrap">
+                        <div class="pagination">
+                            <div class="page-num">每页20条</div>
+                            <select name="page" class="select-page" id="page_list">
+                                <option value="1">第一页</option>
+                                <option value="2">第二页</option>
+                                <option value="3">第三页</option>
+                                <option value="4">第四页</option>
+                            </select>
+                            <p>共<span id="all_page">20</span>页</p>
+                            <div class="page-turing prev" id="page_decrease">
+                                <img src="{% static 'images/left.png' %}" alt="" >
+                            </div>
+                            <div class="page-turing" id="page_add">
+                                <img src="{% static 'images/right.png' %}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/analytics/store_analysis.js' %}"></script>
+</body>
+
+</html>

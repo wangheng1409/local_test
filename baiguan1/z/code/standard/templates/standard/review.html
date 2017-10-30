@@ -1,0 +1,279 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标品Review</title>
+<link href="http://cdn.bootcss.com/semantic-ui/2.1.4/semantic.min.css" rel="stylesheet" type="text/css" >
+<style>
+.container{
+    margin: 20px auto;
+    width:600px;
+}
+
+#alias-container{
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+{% if msg %}
+<div class="ui success message">
+  <i class="close icon"></i>
+  <div class="header">
+    {{msg}}
+  </div>
+</div>
+{% endif %}
+
+  <form method="post" class="ui form">
+    {% csrf_token %}
+
+
+    <div>{{form.status}}</div>
+
+  <div class="field">
+    <label>国际条码</label>
+    <div><a href='{% url "standards-review-ancc-forward" barcode=instance.barcode %}' target='_blank'>{{instance.barcode}}</a></div>
+  </div>
+
+  <div class="field">
+    <label>商品名 ( 企业简称 品牌 商品名 規格 )</label>
+    {{form.name}}
+  </div>
+  <div class="field">
+    <label>別名</label>
+    <div class="ui list" id="alias-container">
+      {% for a in instance.alias %}
+      <div class="item">{{a}}</div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="fields">
+    <div class="six wide field">
+       <select class="ui search dropdown" id="vendor">
+       <option value="">企业简称</option>
+       </select>
+    </div>
+
+    <div class="six wide field">
+       <select class="ui search dropdown" id="brand">
+       <option value="">品牌</option>
+       </select>
+    </div>
+
+    <div class="six wide field">
+       <select class="ui search dropdown" id="series" name='series'>
+       <option value="">系列</option>
+       </select>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>规格</label>
+    <div class="ui search" id="model-field">
+      <div class="ui icon input fluid">
+        {{form.model}}
+        <i class="search icon"></i>
+      </div>
+      <div class="results"></div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>口味</label>
+    <div class="ui search" id="flavor-field">
+      <div class="ui icon input fluid">
+        {{form.flavor}}
+        <i class="search icon"></i>
+      </div>
+      <div class="results"></div>
+    </div>
+  </div>
+
+  <div class="ui error message"></div>
+  <button class="ui button" type="submit">提交</button>
+
+
+  </form>
+</div>
+
+<script src="{% static 'lib/jquery-3.0.0.min.js' %}"></script>
+<script src="{% static 'lib/semantic.min.js' %}"></script>
+<script>
+
+
+
+$(function(){
+
+$.ajaxSetup({
+    data: {csrfmiddlewaretoken: '{{csrf_token}}' },
+});
+
+$('.ui.dropdown').dropdown();
+
+
+$('#model-field').search({
+    apiSettings: {
+      url: '/standards/auto/model?q={query}'
+    },
+    minCharacters: 1,
+    fields: {
+      title: 'name'
+    }
+});
+
+
+$('#flavor-field').search({
+    apiSettings: {
+      url: '/standards/auto/flavor?q={query}'
+    },
+    minCharacters: 1,
+    fields: {
+      title: 'name'
+    }
+});
+
+
+function updateCategory(params, target_id, msg, selected){
+  $.post('/standards/series', params, function(data){
+    var out_html = '<option value="">'+msg+'</option>';
+    for(var i=0; i < data['results'].length; i++){
+      if(selected != -1 && selected == data['results'][i]['value']){
+        out_html += '<option selected="selected" value="'+data['results'][i]['value']+'">'+ data['results'][i]['name'] +'</option>';
+      }else{
+        out_html += '<option value="'+data['results'][i]['value']+'">'+ data['results'][i]['name'] +'</option>';
+      }
+    }
+    $(target_id).html(out_html);
+    $(target_id).dropdown('refresh');
+    if(selected){
+      setTimeout(function () {
+        $(target_id).dropdown('set selected', selected);
+      }, 1);
+    }
+
+  });
+}
+
+$('#vendor').on('change', function(){
+
+  setTimeout(function () {
+    $('#brand').dropdown('clear');
+    $('#series').dropdown('clear');
+  }, 1);
+
+  var vendorVal = $(this).val();
+  if(vendorVal.length > 0){
+    updateCategory({'t1': vendorVal}, '#brand', '品牌', -1);
+  }
+});
+
+$('#brand').on('change', function(){
+  $('#series').html('<option value="">系列</option>');
+  setTimeout(function () {
+    $('#series').dropdown('clear');
+  }, 1);
+  var brandVal = $(this).val();
+  if(brandVal.length > 0){
+    vendorVal = $('#vendor').val();
+    // t = '?t1=' + encodeURI(vendorVal) + '&t2=' + encodeURI(brandVal);
+    updateCategory({'t1': vendorVal, 't2': brandVal}, '#series', '系列', -1);
+  }
+});
+
+{% if instance and vendor %}
+updateCategory({}, '#vendor', '企业简称', '{{vendor}}');
+updateCategory({'t1':'{{vendor}}'}, '#brand', '品牌', '{{brand}}');
+updateCategory({'t1':'{{vendor}}','t2':'{{brand}}'}, '#series', '系列', '{{series}}');
+{% else %}
+updateCategory({}, '#vendor', '企业简称', -1);
+{% endif %}
+
+
+
+$('.ui.form')
+  .form({
+    on: 'blur',
+    fields: {
+      name: {
+        identifier: 'name',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : '商品名不能留空'
+          }
+        ]
+      },
+      flavor: {
+        identifier: 'flavor',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : '口味不能留空'
+          }
+        ]
+      },
+      model: {
+        identifier: 'model',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : '规格不能留空'
+          }
+        ]
+      },
+      vendor: {
+        identifier  : 'vendor',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : '企业简称不能留空'
+          }
+        ]
+      },
+      brand: {
+        identifier  : 'brand',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : '品牌不能留空'
+          }
+        ]
+      },
+      series: {
+        identifier  : 'series',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : '系列不能留空'
+          }
+        ]
+      },
+    }
+  })
+;
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{% extends "store/store_base.html"  %}
+
+{% block title_style %}
+<title>单店分析</title>
+{% endblock %}
+{% block body %}
+<body>
+<table>
+<tr>
+<td><a href ="{%url 'store_prices_view' %}?store_id={{store_id}}">价格带</a></td>
+</tr>
+<tr>
+<td><a href ="{%url 'store_category_nearby_view' %}?store_id={{store_id}}">类别周边对比</a></td>
+</tr>
+<tr>
+<td><a href ="{%url 'store_basket_quadrant_view' %}?store_id={{store_id}}">购物篮系数四象限图</a></td>
+</tr>
+<tr>
+<td><a href ="{%url 'store_basket_category_view' %}?store_id={{store_id}}">购物篮系数分类占比</a></td>
+</tr>
+<tr>
+<td><a href ="{%url 'store_basket_week_view' %}?store_id={{store_id}}">一周购物篮系数变化</a></td>
+</tr>
+<tr>
+<td><a href ="{%url 'store_basket_sales_view' %}?store_id={{store_id}}">TOP20销售占比和购物篮系数分析</a></td>
+</tr>
+<tr>
+<td><a href ="{%url 'store_top_item_view' %}?store_id={{store_id}}">TOP20商品缺货损失分析</a></td>
+</tr>
+</table>
+</body>
+{% endblock %}

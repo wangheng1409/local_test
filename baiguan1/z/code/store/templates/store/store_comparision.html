@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>超盟 - 商店对比</title>
+
+    <link href="http://cdn.bootcss.com/semantic-ui/2.2/semantic.min.css" rel="stylesheet" type="text/css">
+    <style>
+        .container {
+            margin: 20px auto;
+            width: 80%;
+        }
+    </style>
+
+    <script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/semantic-ui/2.2/semantic.min.js"></script>
+    <script src="//cdn.bootcss.com/jquery.form/3.51/jquery.form.min.js"></script>
+    <script type="text/javascript">
+
+    </script>
+</head>
+<body class="container">
+    <h2>比较结果</h2>
+    <h4>修正的余弦相似度:{{adjusted_cosine}}</h4>
+    <h4>余弦相似度:{{cosine_similarity}}</h4>
+    <h4>皮尔森相关系数:{{pearson_correlation}}</h4>
+    <h4>欧式距离:{{euclidean_distance}}</h4>
+    <h4>曼哈顿距离:{{manhattan_distance}}</h4>
+    <h3>正相关数量</h3>
+    {%for item in positive_nums%}
+        <h3>id:{{item.id}}, 数量:{{item.positive_num}}</h3>
+    {%endfor %}
+    <h3>负相关数量</h3>
+    {%for item in negative_nums%}
+        <h3>id:{{item.id}}, 数量:{{item.negative_num}}</h3>
+    {%endfor %}
+    <h4>相关数量差:{{difference}}</h4>
+
+    <h2>店铺信息</h2>
+    {%for store in stores %}
+    <div>
+        <h3>店铺:{{store.id}}</h3>
+        <h4>店铺名称:{{store.name}}</h4>
+        <h4>平均销售额:{{store.avg_sales}}</h4>
+        <h4>vector:{{store.vector}}</h4>
+        <ul>
+        {%for item in store.sims %}
+            <li>店铺ID:{{item.store_id}}, 店铺名称:{{item.store_name}}, 相似度:{{item.adjusted_cosine}}, 正相关数量:{{item.positive_num}}, 负相关数量:{{item.negative_num}}, 相关数量差:{{item.difference}}, 预测销售额:{{item.min_predict_sales}} -- {{item.max_predict_sales}}, 实际销售额:{{item.sales}}, 人均GDP: {{item.pgdp}}</li>
+            {%endfor %}
+        </ul>
+    </div>
+    {%endfor %}
+
+</body>
+</html>

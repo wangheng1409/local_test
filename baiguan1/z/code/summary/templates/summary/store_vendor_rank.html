@@ -1,0 +1,42 @@
+{% load staticfiles %}
+<html>
+<head>
+<link href="{% static 'summary/simple.css' %}" rel="stylesheet">
+<title>超盟 - 便利店 / {{store_name}} / {{date}}</title>
+</head>
+<body>
+
+<h2>便利店 - {{store_name}} / {{date}}</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th rowspan="2">{% if category %}{{category}}{% endif %}</th>
+            <th rowspan="2">供应商</th>
+            <th colspan="2">销售额</th>
+            <th colspan="2">份额</th>
+        </tr>
+        <tr>
+            <th>RMB</th>
+            <th>增长率%</th>
+            <th>%</th>
+            <th>(+/- pts)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in result %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{row.vendor}}</td>
+                <td>{{row.sales|default_if_none:"-"}}</td>
+                <td>{{row.sales_growth|default_if_none:"-"}}</td>
+                <td>{{row.sales_percentage_in_overall|default_if_none:"-"}}</td>
+                <td>{{row.sales_percentage_growth_in_overall|default_if_none:"-"}}</td>
+            </tr>
+        {% endfor content %}
+    </tbody>
+</table>
+
+
+</body>
+</html>

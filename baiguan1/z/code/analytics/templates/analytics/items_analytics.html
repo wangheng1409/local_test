@@ -1,0 +1,140 @@
+{% load staticfiles %}
+{% load humanize %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>單店商品分析</title>
+<!-- fix the confliction between jquery-sparkline and semantic-ui -->
+<style>
+.jqstooltip{
+    width: auto !important;
+    height: auto !important;
+}
+.container{
+    width: 1200px;
+    margin: 0 auto;
+}
+</style>
+</head>
+
+<body>
+
+<div id='spark-x-values' values='{{x_values|join:","}}'></div>
+
+<div class="container">
+    <h1>{{store_name}} | TOP 200商品</h1>
+    <div class="ui statistics">
+        <div class="ui statistic">
+          <div class="value">
+            {{total_sales|floatformat:"0"|intcomma}}
+          </div>
+          <div class="label">
+            總銷售額(RMB)
+          </div>
+        </div>
+
+        <div class="ui statistic">
+          <div class="value">
+            {{run_sum|intcomma}}%
+          </div>
+          <div class="label">
+            top商品佔比
+          </div>
+        </div>
+    </div>
+
+<div class="ui divider"></div>
+<div class="sixteen wide column">
+    <form method='GET'>
+        <div class='ui stackable' id='datepicker_menu'>
+            <div class='ui input labeled'>
+                <div class='ui label'>开始日期</div>
+                <input type='text' id='start_date' name='start_date' value='{{start_date}}'>
+            </div>
+            <div class='ui input labeled'>
+                <div class='ui label'>结束日期</div>
+                <input type='text' id='end_date' name='end_date' value='{{end_date}}'>
+            </div>
+            <input type='submit' class='ui button green' value='GO'>
+        </div>
+        <input type='hidden' name='brand' value='{{brand}}'>
+    </form>
+</div>
+
+<div class="ui divider"></div>
+
+<div class="ui grid">
+    <div class="eight wide column">
+        <table class='ui table selectable comptact'>
+        <thead>
+            <tr>
+              <th>排名</th>
+              <th>商品</th>
+              <th>銷售額(RMB)</th>
+              <th>标簽</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for r in ranked_items %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{r.name}}</td>
+            <td>{{r.sales|floatformat:"2"}}</td>
+            <td>
+                <div class='ui labels'>
+                    {% for k in r.keywords %}
+                    <span class='ui label green'>{{k}}</span>
+                    {% endfor %}
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+
+    <div class="eight wide column">
+        <table class='ui table selectable  comptact'>
+        <thead>
+            <tr>
+              <th>排名</th>
+              <th>品牌</th>
+              <th>銷售額(RMB)</th>
+              <th>佔比</th>
+              <th>商品</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for brand, val in ranked_brands %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td class='single line'>{{brand}}</td>
+            <td>{{val.sales|floatformat:"2"}}</td>
+            <td>{{val.per|floatformat:"2"}}%</td>
+            <td>
+                <div class='ui labels'>
+                    {% for item in val.items %}
+                    <span class='ui label green'>{{item.name}}<div class="detail">{{item.per|floatformat:"2"}}%</div></span>
+                    {% endfor %}
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+</div>
+
+
+<link href="//cdn.bootcss.com/semantic-ui/2.1.4/semantic.min.css" rel="stylesheet" type="text/css" >
+<link href="//cdn.bootcss.com/jqueryui/1.12.0/jquery-ui.min.css" rel="stylesheet">
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/jqueryui/1.12.0/jquery-ui.min.js"></script>
+<!-- <script src="{% static "vendor/bower-jquery-sparkline/dist/jquery.sparkline.retina.js" %}"></script> -->
+<!-- <script src="{% static "js/monitor/monitor_brand_items.js" %}"></script> -->
+</body>
+
+
+</html>

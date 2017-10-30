@@ -1,0 +1,481 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>超盟 - 门店分析 - 每一天便利店</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/analytics/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/analytics/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/analytics/store-detailed-info.css' %}">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <div class="nav">
+        <div class="logo">
+            <img src="{% static 'images/logo.jpg' %}">
+            <h3>连锁数据分析</h3>
+            <div class="homepage">
+                <span>首页</span>
+                <div class="triangle"></div>
+            </div>
+        </div>
+        <div class="user-heads">
+            <img src="{% static 'images/heads.png' %}">
+        </div>
+    </div>
+    <div class="wrap" id="wrap">
+        <!-- 侧边栏 -->
+        <div class="sidebar" id="sidebar">
+            <div class="management-analysis">
+                <div class="title">
+                    <img src="{% static 'images/store.png'%}" alt="">
+                    <span>经营分析</span>
+                </div>
+                <div class="options">
+                    <a href="/analytics/chain-stores/store-overview">总体概况</a>
+                    <a class="sidebar-color" href="/analytics/chain-stores/stores/store-analysis">门店分析</a>
+                </div>
+            </div>
+            <div class="optimize-structure">
+                <div class="structure-title">
+                    <img src="{% static 'images/store.png'%}" alt="">
+                    <span>商品结构优化</span>
+                </div>
+            </div>
+        </div>
+        <!-- 内容 -->
+        <div class="content">
+            <div class="menu">
+                <div class="hierarchy">
+                    <span>门店分析</span>
+                    <img src="{% static 'images/below.png'%}">
+                    <span>每一天便利店(西安市新城区)</span>
+                </div>
+                <div class="menu-options">
+                    <div class="store-type">
+                        <span class="store-color">连锁</span>
+                        <span>加盟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="graph">
+                <div class="basic-indexes-module">
+                    <div class="total">
+                        <div class="total-title">
+                            <p>基础指标</p>
+                            <div class="store-options">
+                                <ul class="date" id="day1">
+                                    <li  day="1">昨天</li>
+                                    <li class="date-choiced"  day="2">当周</li>
+                                    <li  day="3">当月</li>
+                                    <li  day="4">当季度</li>
+                                    <li  day="5">当年</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <ul class="total-items">
+                            <li>
+                                <img src="{% static 'images/store.png'%}" alt="">
+                                <div class="sales-target">
+                                    <p >销售任务</p>
+                                    <p id="total_target">6000万</p>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="{% static 'images/store.png'%}" alt="">
+                                <div class="sales-target">
+                                    <p >完成率</p>
+                                    <p id="total_finish_rate">110%</p>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="{% static 'images/store.png'%}" alt="">
+                                <div class="sales-target">
+                                    <p >差额</p>
+                                    <p id="total_balance">＋600万</p>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="{% static 'images/store.png'%}" alt="">
+                                <div class="sales-target">
+                                    <p >库存周转率</p>
+                                    <p id="total_turnover">11天</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="data-visualization">
+                        <ul class="options-tab" id="total_data">
+                            <li class="graph-color"  rule="sales">
+                                <span>销售额</span>
+                                <span>6000万</span>
+                             </li>
+                            <li  rule="gross_profit">
+                                <span>毛利额</span>
+                                <span>1800万</span>
+                             </li>
+                            <li  rule="num_trades">
+                                <span>客单量</span>
+                                <span>1000万</span>
+                             </li>
+                            <li  rule="each_num_trades_sales">
+                                <span>客单价</span>
+                                <span>9.6元</span>
+                             </li>
+                        </ul>
+                        <div class="line-chart">
+                            <!-- 折线图 -->
+                            <div class="curve" id="main"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="center-modules">
+                    <!-- 圆形图 -->
+                    <div class="circle-graph-module">
+                        <div class="total">
+                            <div class="total-title">
+                                <p>销售排行</p>
+                                <div class="total-title">
+                                    <div class="store-options">
+                                        <ul class="date" id="day2">
+                                            <li  day="1">近7天</li>
+                                            <li class="date-choiced"  day="2">近30天</li>
+                                            <li  day="3">近90天</li>
+                                        </ul>
+                                        <img src="{% static 'images/download.png' %}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="data-visualization">
+                            <ul class="options-tab" id="y2">
+                                <li  rule="contribution">
+                                    <span>贡献度</span>
+                                </li>
+                                <li  rule="sales">
+                                    <span>销售额</span>
+                                </li>
+                                <li  rule="gross_profit">
+                                    <span>毛利</span>
+                                </li>
+                                <li  rule="num">
+                                    <span>销售量</span>
+                                </li>
+                            </ul>
+                            <div class="circle-chart">
+                                <!-- 饼型图 -->
+                                <div class="curve" id="circle_chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 条形图 -->
+                    <div class="bar-chart-module">
+                        <div class="total">
+                            <div class="total-title">
+                                <p>增长排行</p>
+                                <div class="total-title">
+                                    <div class="store-options">
+                                        <ul class="date" id="day3">
+                                            <li  day="1">近7天</li>
+                                            <li class="date-choiced"  day="2">近30天</li>
+                                            <li  day="3">近90天</li>
+                                        </ul>
+                                        <img src="{% static 'images/download.png' %}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="data-visualization">
+                            <ul class="options-tab" id="y3">
+                                <li  rule="contribution">
+                                    <span>贡献度</span>
+                                </li>
+                                <li  rule="sales">
+                                    <span>销售额</span>
+                                </li>
+                                <li  rule="gross_profit">
+                                    <span>毛利</span>
+                                </li>
+                                <li  rule="num">
+                                    <span>销售量</span>
+                                </li>
+                            </ul>
+                            <div class="bar-chart">
+                                <!-- 条形图 -->
+                                <div class="curve" id="bar_chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 表格 -->
+                <div class="table-list">
+                    <div class="total">
+                        <div class="total-title">
+                            <p>特殊商品关注</p>
+                            <div class="total-title">
+                                <div class="store-options">
+                                    <ul class="date" id="day4">
+                                        <li  day="1">近7天</li>
+                                        <li class="date-choiced"  day="2">近30天</li>
+                                        <li  day="3">近90天</li>
+                                    </ul>
+                                    <img src="{% static 'images/download.png' %}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="data-visualization">
+                        <ul class="options-tab" id="rule">
+                            <li  sort_rule="1">
+                                <span>贡献度最大top20</span>
+                            </li>
+                            <li  sort_rule="2">
+                                <span>贡献度最低top20</span>
+                            </li>
+                            <li  sort_rule="3">
+                                <span>增长最快top20</span>
+                            </li>
+                            <li  sort_rule="4">
+                                <span>下滑最快top20</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <table class="area-list">
+                        <thead>
+                            <tr id="new_row">
+                                <th>排序</th>
+                                <th>商品名</th>
+                                <th class="add-button">
+                                    
+                                    <img src="{% static 'images/add.png' %}" id="open_add_items">
+                                    <div class="add-items hide" id='add-items'>
+                                        <div class="add-items-title" >
+                                            <span>设置查看的指标</span>
+                                            <img src="{% static 'images/close.png' %}" id="close_add_items" >
+                                        </div>
+                                        <div class="checkbox-wrap">
+                                            <ul class="checkbox-list" id="add_row">
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" tag="barcode">
+                                                        商品条码
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" tag="item_id">
+                                                        商品ID
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" tag="sales">
+                                                        销售额
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" tag="num">
+                                                        销售量
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" tag="gross_profit">
+                                                        毛利额
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" tag="cross_ratio">
+                                                        交叉比率
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" tag="status">
+                                                        商品状态
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" tag="turnover">
+                                                        库存周转率
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" tag="eachday_num">
+                                                        日均销量
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" tag="gross_profit_rate">
+                                                        毛利率
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" tag="each_sales">
+                                                        销售价
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" tag="sales_growth">
+                                                        销售额增幅
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" tag="num_growth">
+                                                        销售量增幅
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" tag="gross_profit_add">
+                                                        毛利增幅
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="choice-button">
+                                            <div class="float-right">
+                                                <input type="button" value="取消" id="cancel"></input>
+                                                <input class="btn-color" type="submit" value="确定" id="add_row1"></input>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="store_list">
+                            <tr>
+                                <td>1</td>
+                                <td>哇哈哈晶钻水500ml</td>
+                                <td>3020137</td>
+                                <td>309</td>
+                                <td>66</td>
+                                <td>56</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>哇哈哈晶钻水500ml</td>
+                                <td>3020137</td>
+                                <td>309</td>
+                                <td>66</td>
+                                <td>56</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>哇哈哈晶钻水500ml</td>
+                                <td>3020137</td>
+                                <td>309</td>
+                                <td>66</td>
+                                <td>56</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>哇哈哈晶钻水500ml</td>
+                                <td>3020137</td>
+                                <td>309</td>
+                                <td>66</td>
+                                <td>56</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>哇哈哈晶钻水500ml</td>
+                                <td>3020137</td>
+                                <td>309</td>
+                                <td>66</td>
+                                <td>56</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>哇哈哈晶钻水500ml</td>
+                                <td>3020137</td>
+                                <td>309</td>
+                                <td>66</td>
+                                <td>56</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>哇哈哈晶钻水500ml</td>
+                                <td>3020137</td>
+                                <td>309</td>
+                                <td>66</td>
+                                <td>56</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>哇哈哈晶钻水500ml</td>
+                                <td>3020137</td>
+                                <td>309</td>
+                                <td>66</td>
+                                <td>56</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>哇哈哈晶钻水500ml</td>
+                                <td>3020137</td>
+                                <td>309</td>
+                                <td>66</td>
+                                <td>56</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>哇哈哈晶钻水500ml</td>
+                                <td>3020137</td>
+                                <td>309</td>
+                                <td>66</td>
+                                <td>56</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>哇哈哈晶钻水500ml</td>
+                                <td>3020137</td>
+                                <td>309</td>
+                                <td>66</td>
+                                <td>56</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>哇哈哈晶钻水500ml</td>
+                                <td>3020137</td>
+                                <td>309</td>
+                                <td>66</td>
+                                <td>56</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>哇哈哈晶钻水500ml</td>
+                                <td>3020137</td>
+                                <td>309</td>
+                                <td>66</td>
+                                <td>56</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>哇哈哈晶钻水500ml</td>
+                                <td>3020137</td>
+                                <td>309</td>
+                                <td>66</td>
+                                <td>56</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/echarts/3.2.3/echarts.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/analytics/store_detailed_info.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/analytics/circle_chart.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/analytics/bar_chart.js' %}"></script>
+</body>
+
+
+</html>

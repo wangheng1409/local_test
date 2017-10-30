@@ -1,0 +1,73 @@
+{% load staticfiles %}
+<html>
+<head>
+<link href="{% static 'summary/simple.css' %}" rel="stylesheet">
+<title>超盟 - 便利店 / {{store_name}} / {{date}}</title>
+</head>
+<body>
+
+<h2>便利店 / {{store_name}} / {{date}}</h2>
+<h3>销售分类总结</h3>
+<table border="1">
+    <thead>
+        <tr>
+            <th rowspan="2">品类</th>
+            <th colspan="2">销售额</th>
+            <th colspan="2">占比</th>
+        </tr>
+        <tr>
+            <th>RMB</th>
+            <th>增长率%</th>
+            <th>%</th>
+            <th>(+/- pts)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cat, row in overall.items %}
+            <tr>
+                <td>{{row.display_cat}}</td>
+                <td>{{row.sales|default_if_none:"-"}}</td>
+                <td>{{row.sales_growth|default_if_none:"-"}}</td>
+                <td>{{row.sales_percentage|default_if_none:"-"}}</td>
+                <td>{{row.sales_percentage_growth|default_if_none:"-"}}</td>
+            </tr>
+        {% endfor content %}
+    </tbody>
+</table>
+
+<h3>{{vendor_name}}</h3>
+<table border="1">
+    <thead>
+        <tr>
+            <th rowspan="2">品类</th>
+            <th colspan="2">销售额</th>
+            <th colspan="2">占比</th>
+            <th colspan="2">份额</th>
+        </tr>
+        <tr>
+            <th>RMB</th>
+            <th>增长率%</th>
+            <th>%</th>
+            <th>(+/- pts)</th>
+            <th>%</th>
+            <th>(+/- pts)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cat, row in vendor.items %}
+            <tr>
+                <td>{{row.display_cat}}</td>
+                <td>{{row.sales|default_if_none:"-"}}</td>
+                <td>{{row.sales_growth|default_if_none:"-"}}</td>
+                <td>{{row.sales_percentage|default_if_none:"-"}}</td>
+                <td>{{row.sales_percentage_growth|default_if_none:"-"}}</td>
+                <td>{{row.sales_percentage_in_overall|default_if_none:"-"}}</td>
+                <td>{{row.sales_percentage_growth_in_overall|default_if_none:"-"}}</td>
+            </tr>
+        {% endfor content %}
+    </tbody>
+</table>
+
+
+</body>
+</html>

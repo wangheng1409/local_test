@@ -1,0 +1,33 @@
+{
+  "name": "bower-jquery-sparkline",
+  "version": "2.1.3",
+  "homepage": "https://github.com/nicolabortignon/bower-jquery-sparkline",
+  "authors": [
+    "Nicola Bortignon <info@nicolabortignon.com>"
+  ],
+  "description": "A plugin for the jQuery javascript library to generate small sparkline charts directly in the browser.",
+  "main": "./dist/jquery.sparkline.retina.js",
+  "keywords": [
+    "jquery",
+    "sparkline",
+    "chart",
+    "graph"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "2.1.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.1.3",
+    "commit": "ece667486f45045a8aebccc6de247d0a09a99183"
+  },
+  "_source": "https://github.com/nicolabortignon/bower-jquery-sparkline.git",
+  "_target": "^2.1.3",
+  "_originalSource": "bower-jquery-sparkline"
+}

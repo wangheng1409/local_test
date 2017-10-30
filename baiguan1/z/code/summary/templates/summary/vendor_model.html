@@ -1,0 +1,60 @@
+{% load staticfiles %}
+{% load humanize %}
+<html>
+<head>
+<link href="{% static 'summary/simple.css' %}" rel="stylesheet">
+
+<title>超盟</title>
+</head>
+<body>
+
+{% if store_name %}
+<h3>
+{{store_name}} / {{date}}<br>
+{% if num_trades %}
+超盟从 {{num_trades|intcomma}} 个交易里找到您的结果: </h3>
+{% endif %}
+</h3>
+{% else %}
+<h3>
+北京地區 / {{date}}<br>
+超盟从 {{num_trades|intcomma}} 个交易, <a href="{% url 'monthly-store-list' date=date %}?mode=vendor-model">{{num_store|intcomma}} 家商店</a>里找到您的结果: </h3>
+{% endif %}
+<h4>{{category|default_if_none:""}}</h4>
+<table border="1">
+    <thead>
+        <tr>
+            <th rowspan="2">供应商</th>
+            <th rowspan="2">包装</th>
+            <th colspan="2">销售额</th>
+            <th colspan="2">占比</th>
+        </tr>
+        <tr>
+            <th>RMB</th>
+            <th>增长率%</th>
+            <th>%</th>
+            <th>(+/- pts)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for vendor, models in result.items %}
+
+            {% for model, row in models.items %}
+                <tr>
+                    {% ifchanged %}
+                    <td rowspan="{{models.keys|length}}">{{vendor}}</td>
+                    {% endifchanged %}
+                    <td>{{row.model}}</td>
+                    <td>{{row.sales|default_if_none:"-"}}</td>
+                    <td>{{row.sales_growth|default_if_none:"-"}}</td>
+                    <td>{{row.sales_percentage_in_overall|default_if_none:"-"}}</td>
+                    <td>{{row.sales_percentage_growth_in_overall|default_if_none:"-"}}</td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+    </tbody>
+</table>
+
+
+</body>
+</html>

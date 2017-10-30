@@ -1,0 +1,64 @@
+
+body,ul,p,form{
+    padding: 0;
+    margin: 0;
+}
+ul{
+    list-style: none;
+}
+
+.landed-wrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 1000px;
+    height: 195px;
+}
+.landed-wrapper .landed{
+    width: 100%;
+    text-align: center;
+}
+.landed-wrapper .landed-logo{
+    padding: 55px 88px 55px 0;
+    display: inline-block;
+    border-right: 1px solid #C2C1C2;
+    width: 25%;
+}
+.landed-wrapper .landed-logo>img{
+    width: 100%;
+}
+
+.landed-wrapper .landed-list{
+    width: 30%;
+    display: inline-block;
+    margin-left: 10%;
+    vertical-align: bottom;
+}
+.landed-wrapper .landed-list>li{
+    display: inline-block;
+}
+.landed-wrapper .landed-list input{
+    margin: 2% 0;
+    padding: 4% 4% 4% 9%;
+    width: 85%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid gray;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+.landed-wrapper .landed-list .btn-bg{
+    margin: 2% 0 0 0;
+    padding: 4%;
+    background: #A4C3CA;
+}
+
+.landed-wrapper .landed-list .warning{
+    height: 30px;
+    line-height: 20px;
+    color: pink;
+    letter-spacing: 0.03em;
+}

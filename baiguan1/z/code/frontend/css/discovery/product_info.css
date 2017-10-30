@@ -1,0 +1,45 @@
+
+/* 数值颜色 */
+.special-color{
+    color: red;
+    font-size: 1.2em;
+}
+
+.con-wrapper .con-info{
+    padding: 1%;
+    border: 1px solid lightgray;
+}
+.con-wrapper .con-info .text-info>img{
+    width: 22%;
+    border: 1px solid lightgray;
+}
+.con-wrapper .con-info .text-info .definite-info{
+    margin-left: 5%;
+    display: inline-block;
+    vertical-align: top;
+    width: 70%;
+}
+.con-wrapper .con-info .text-info .definite-info>h3{
+    font-size: 1.3em;
+}
+.con-wrapper .con-info .text-info .definite-info .price-info{
+    padding: 2% 0;
+    margin: 3.5% 0;
+    background: rgb(240,240,240);
+    font-size: 1.1em;
+}
+.con-wrapper .con-info .text-info .definite-info .price-info li,
+.curve-info .curve-title>h3{
+    display: inline-block;
+    margin: 1% 4%;
+}
+
+.con-wrapper .con-info .curve{
+    width: 960px;
+    height: 600px;
+}
+.con-wrapper .con-info .curve-info .curve-title{
+    overflow: hidden;
+    margin: 4% 0 2%;
+}
+

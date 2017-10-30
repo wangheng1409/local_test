@@ -1,0 +1,91 @@
+{% extends "analytics/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% block title %}多店分析{% endblock title %}
+{% block body %}
+<div class="container rail">
+    <!-- <h1>{{store_name}} / TOP 200商品 / 最近30天</h1> -->
+<!--     <div class="ui statistics">
+        <div class="ui statistic">
+          <div class="value">
+            {{total_sales|floatformat:"0"|intcomma}}
+          </div>
+          <div class="label">
+            總銷售額(RMB)
+          </div>
+        </div>
+
+        <div class="ui statistic">
+          <div class="value">
+            {{run_sum|intcomma}}%
+          </div>
+          <div class="label">
+            top商品佔比
+          </div>
+        </div>
+    </div> -->
+
+<div class="ui grid" id='tagged-items'>
+    <div class="eight wide column">
+        <h3>共有品牌</h3>
+        <table class='ui table selectable comptact'>
+        <thead>
+            <tr>
+              <th></th>
+              <th>品牌</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for b in inner_brands %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{b}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+
+    <div class="eight wide column">
+        <h3>沒有在賣的品牌</h3>
+        <table class='ui table selectable  comptact'>
+        <thead>
+            <tr>
+              <th></th>
+              <th>品牌</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for b in outter_brands %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{b}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+</div>
+{% endblock body %}
+
+{% block extra-script %}
+<link href="//cdn.bootcss.com/semantic-ui/2.2.4/components/sticky.min.css" rel="stylesheet">
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/components/sticky.js"></script>
+<style>
+#tag-types{
+    background-color: white;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+</style>
+<script>
+$(function(){
+    $('.ui.sticky')
+      .sticky({
+        context: '#tagged-items'
+      })
+    ;
+});
+</script>
+{% endblock extra-script %}

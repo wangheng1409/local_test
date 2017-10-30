@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>超盟 - 添加账号</title>
+
+    <link href="http://cdn.bootcss.com/semantic-ui/2.2/semantic.min.css" rel="stylesheet" type="text/css">
+    <style>
+        .container {
+            margin: 20px auto;
+            width: 60%;
+        }
+    </style>
+
+    <script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/semantic-ui/2.2/semantic.min.js"></script>
+    <script src="//cdn.bootcss.com/jquery.form/3.51/jquery.form.min.js"></script>
+    <script src={%static "js/store/transaction_account.js" %}></script>
+</head>
+<body class="container">
+{%if not wechat%}
+<h1 class="ui header">添加微信交易账号
+    <div class="sub header">首先,请在以下输入框内输入微信的交易账号相关信息,所有字段均为必填项。</div>
+</h1>
+
+<form class="ui form" id="wechat_form">
+    {% csrf_token %}
+    <div class="field">
+        <label>微信支付商户号,<a href="https://pay.weixin.qq.com" target="_Blank">点击这里</a>查看。</label>
+        <input type="text" name="mch_id" placeholder="在此填写商户号">
+    </div>
+    <div class="field">
+        <label>微信公众账号APPID,<a href="https://mp.weixin.qq.com" target="_Blank">点击这里</a>查看。</label>
+        <input type="text" name="appid" placeholder="在此填写APPID">
+    </div>
+
+    <div class="field">
+        <label>微信商户平台登录账号</label>
+        <input type="text" name="username" placeholder="在此填写登录账号">
+    </div>
+    <div class="field">
+        <label>微信商户平台登录密码</label>
+        <input type="password" name="password" placeholder="在此填写密码">
+    </div>
+    <div class="field">
+        <label>微信商户平台API密钥</label>
+        <input type="text" name="api_key" placeholder="在此填写密钥">
+    </div>
+    <button class="ui button" type="submit">下一步</button>
+</form>
+
+{%elif not alipay%}
+
+<h1 class="ui header">添加支付宝交易账号
+    <div class="sub header">首先,请在以下输入框内输入支付宝的交易账号相关信息,所有字段均为必填项。</div>
+</h1>
+<form class="ui form" id="alipay_form">
+    {% csrf_token %}
+
+    <div class="field">
+        <label>支付宝登录账号</label>
+        <input type="text" name="username" placeholder="在此填写登录账号">
+    </div>
+    <div class="field">
+        <label>支付宝登录密码</label>
+        <input type="password" name="password" placeholder="在此填写登录密码">
+    </div>
+    <div class="field">
+        <label>支付宝支付密码</label>
+        <input type="password" name="payment_password" placeholder="在此填写支付密码">
+    </div>
+    <div class="field">
+        <label>支付宝合作者身份(PID),<a href="https://b.alipay.com/order/pidAndKey.htm" target="_Blank">点击这里</a>查看。</label>
+        <input type="text" name="pid" placeholder="在此填写PID">
+    </div>
+    <div class="field">
+        <label>支付宝安全校验码(KEY),<a href="https://b.alipay.com/order/pidAndKey.htm" target="_Blank">点击这里</a>查看。</label>
+        <input type="text" name="key" placeholder="在此填写KEY">
+    </div>
+    <div class="field">
+        <label>支付宝APPID,<a href="https://b.alipay.com/order/pidAndKey.htm" target="_Blank">点击这里</a>查看。</label>
+        <input type="text" name="appid" placeholder="在此填写APPID">
+    </div>
+    <button class="ui button" type="submit">提交</button>
+</form>
+
+
+{%elif alipay and wechat%}
+完成
+{%endif %}
+
+<div class="ui page dimmer">
+    <div class="content">
+        <div class="center">
+            <div class="ui text loader">正在验证账户信息，请稍候……</div>
+        </div>
+    </div>
+
+    <p></p>
+</div>
+
+
+</div>
+</body>
+</html>

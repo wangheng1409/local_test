@@ -1,0 +1,23 @@
+{% extends "store/store_base.html"  %}
+{% load staticfiles %}
+{% block title_style %}
+<title>商品销售详情监测</title>
+{% endblock %}
+{% block body %}
+<body onload="itemMapOut()">
+<script language="JavaScript">
+function itemMapOut(){
+var   series = {{mapData_series| safe}};
+var   xAxis =  {{mapData_xAxis| safe}};
+var   lose_days =  {{lose_days| safe}};
+var   lose_dates = {{lose_dates| safe}};
+var   lose_count =  {{lose_count| safe}};
+var   item_name =  {{item_name| safe}};
+itemMap(series,xAxis,lose_days,lose_dates,lose_count,item_name);
+}
+</script>
+<div id="container" style="width: 1250px; height: 1000px; margin: 0 auto"></div>
+<script src="{% static "js/store/store_top_item_detail.js" %}"></script>
+<script src="http://cdn.bootcss.com/echarts/3.2.3/echarts.min.js"></script>
+</body>
+{% endblock %}

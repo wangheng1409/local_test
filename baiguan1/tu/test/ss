@@ -1,0 +1,48 @@
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+
+from PIL import Image
+from numpy import *
+from pylab import *
+
+from test import sift
+import os
+
+
+
+def process_image_dsift(imagename,resultname,size=20,steps=10,force_orientation=False,resize=None):
+    im=Image.open(imagename).convert('L')
+    if resize!=None:
+        im=im.resize(resize)
+    m,n=im.size
+
+    if imagename[-3:]!='pgm':
+        im.save('tmp.pgm')
+        imagename='tmp.pgm'
+
+    scale=size/3.0
+    x,y=meshgrid(range(steps,m,steps),range(steps,n,steps))
+    xx,yy=x.flatten(),y.flatten()
+
+    frame=array([xx,yy,scale*ones(xx.shape[0]),zeros(xx.shape[0])])
+    savetxt('tmp.frame',frame.T,fmt='%03.3f')
+
+    if force_orientation:
+        cmmd=str(
+            'sift '+imagename+' --output='+resultname+
+            ' --read-frames=tmp.frame --orientations'
+        )
+    else:
+        cmmd = str(
+            'sift ' + imagename + ' --output=' + resultname +
+            ' --read-frames=tmp.frame'
+        )
+    os.system(cmmd)
+    print('processed',imagename,'to',resultname)
+
+process_image_dsift('a.jpg','a.sift',90,40,True)
+
+l,d= sift.read_features_from_file('a.sift')
+im=array(Image.open('a.jpg'))
+sift.plot_features(im, l, True)
+show()

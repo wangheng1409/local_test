@@ -1,0 +1,486 @@
+/* 选择日期，被选中状态 */
+.date-choiced{
+    background: #d0d5de;
+}
+
+/* 内容 */
+.wrap .content {
+    overflow: hidden;
+}
+.wrap .content .menu {
+    position: relative;
+    overflow: hidden;
+    height: 78px;
+    border-bottom: 1px solid #C9CED9;
+}
+.wrap .content .menu .hierarchy{
+    position: absolute;
+    top: 50%;
+    left: 42px;
+    transform: translate(0,-50%);
+    font-size: 18px;
+}
+.wrap .content .menu .hierarchy>img{
+    width: 23px;
+    vertical-align: middle;
+}
+.wrap .content .menu .menu-options {
+    position: absolute;
+    top: 50%;
+    right: 68px;
+    transform: translate(0,-50%);
+    font-size: 12px;
+    color: #939BAA;
+}
+.wrap .content .menu .menu-options .store-type{
+    margin-left: 32px;
+    vertical-align: middle;
+    display: inline-block;
+}
+.wrap .content .menu .menu-options .store-type>span:nth-of-type(1) {
+    margin-right: 22px;
+    padding: 4px 14px;
+    background: #FF491F;
+    border-radius: 9px;
+    color: white;
+}
+.wrap .content .graph {
+    background: #E3E8EF;
+    overflow: hidden;
+}
+.wrap .content .graph .basic-indexes-module {
+    width: 92%;
+    margin: 20px auto;
+    background: #FFFFFF;
+    box-sizing: border-box;
+    border: 1px solid #C9CED9;
+}
+.wrap .content .graph .basic-indexes-module .total {
+    padding: 0 22px 22px;
+    border-bottom: 1px solid #C9CED9;
+}
+.wrap .content .graph .basic-indexes-module .total-title{
+    position: relative;
+    padding: 11px 0;
+    overflow: hidden;
+    border-bottom: 1px solid #C9CED9;
+}
+.wrap .content .graph .basic-indexes-module .total-title>p {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0,-50%);
+    font-size: 18px;
+    color: #2a2a2a;
+}
+.wrap .content .graph .basic-indexes-module .total>p {
+    padding-bottom: 18px;
+    font-size: 18px;
+    border-bottom: 1px solid #CDD2DB;
+}
+.wrap .content .graph .basic-indexes-module .total .store-options {
+    float: right;
+}
+.wrap .content .graph .basic-indexes-module .total .store-options .date{
+    vertical-align: middle;
+    display: inline-block;
+    border: 1px solid #CBD0DA;
+    border-radius: 5px;
+}
+.wrap .content .graph .basic-indexes-module .total .store-options .date>li {
+    float: left;
+    padding: 9px 14px;
+    border-right: 1px solid #CBD0DA;
+    font-size: 12px;
+    color: #576071;
+    cursor: pointer;
+}
+.wrap .content .graph .basic-indexes-module .total .store-options .date>li:nth-of-type(5) {
+    border-right: 0;
+}
+.wrap .content .graph .basic-indexes-module .total .total-items>li {
+    margin-top: 22px;
+    padding: 5px 0;
+    display: inline-block;
+    width: 24%;
+    border-right: 1px solid #CCD1DB;
+}
+.wrap .content .graph .basic-indexes-module .total .total-items>li:nth-of-type(4) {
+    border: 0;
+}
+.wrap .content .graph .basic-indexes-module .total .total-items>li>img {
+    margin-left: 30px;
+    width: 38px;
+}
+.wrap .content .graph .basic-indexes-module .total .total-items>li .sales-target {
+    margin-left: 22px;
+    display: inline-block;
+    font-size: 22px;
+    color: #212121;
+}
+.wrap .content .graph .basic-indexes-module .total .total-items>li .sales-target>p:nth-of-type(1) {
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #747d8d;
+}
+.wrap .content .graph .basic-indexes-module .data-visualization .options-tab {
+    background: #F5F7FA;
+    font-size: 14px;
+    font-weight: bold;
+}
+.wrap .content .graph .basic-indexes-module .data-visualization .options-tab>li {
+    display: inline-block;
+    padding: 17px 35px;
+}
+.wrap .content .graph .basic-indexes-module .data-visualization .options-tab>li:nth-of-type(1) {
+    background: white;
+    margin: 6px 0 0 22px;
+    border-top: 4px solid #FF4E1C;
+    border-right: 1px solid #D4D9E1;
+    border-left: 1px solid #D4D9E1;
+}
+.wrap .content .graph .basic-indexes-module .data-visualization .options-tab span:nth-of-type(1) {
+    color: #697282;
+}
+.wrap .content .graph .basic-indexes-module .data-visualization .line-chart {
+    margin: 24px auto;
+    width: 920px;
+    height: 274px;
+}
+.wrap .content .graph .basic-indexes-module .data-visualization .line-chart .curve{
+    width: 920px;
+    height: 274px;
+}
+
+/* 圆形图 */
+.wrap .content .graph .center-modules{
+    width: 92%;
+    margin: 20px auto;
+    overflow: hidden;
+}
+.wrap .content .graph .center-modules img {
+    width: 14px;
+}
+.wrap .content .graph .center-modules .circle-graph-module {
+    float: left;
+    margin-right: 19px;
+    width: 49%;
+    background: #FFFFFF;
+    box-sizing: border-box;
+    border: 1px solid #C9CED9;
+}
+.wrap .content .graph .center-modules .circle-graph-module .total {
+    padding: 10px 14px 10px 22px;
+    border-bottom: 1px solid #C9CED9;
+}
+.wrap .content .graph .center-modules .circle-graph-module .total .total-title{
+    position: relative;
+    overflow: hidden;
+}
+.wrap .content .graph .center-modules .circle-graph-module .total .total-title>p {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0,-50%);
+    font-size: 18px;
+    color: #2a2a2a;
+}
+.wrap .content .graph .center-modules .circle-graph-module .total .store-options {
+    float: right;
+}
+.wrap .content .graph .center-modules .circle-graph-module .total .store-options .date{
+    margin-right: 32px;
+    vertical-align: middle;
+    display: inline-block;
+    border: 1px solid #CBD0DA;
+    border-radius: 5px;
+}
+.wrap .content .graph .center-modules .circle-graph-module .total .store-options .date>li {
+    float: left;
+    padding: 9px 14px;
+    border-right: 1px solid #CBD0DA;
+    font-size: 12px;
+    color: #576071;
+    cursor: pointer;
+}
+.wrap .content .graph .center-modules .circle-graph-module .total .store-options .date>li:nth-of-type(3) {
+    border-right: 0;
+}
+.wrap .content .graph .center-modules .circle-graph-module .data-visualization .options-tab {
+    background: #F5F7FA;
+    font-size: 14px;
+    font-weight: bold;
+}
+.wrap .content .graph .center-modules .circle-graph-module .data-visualization .options-tab>li {
+    display: inline-block;
+    padding: 17px 35px;
+}
+.wrap .content .graph .center-modules .circle-graph-module .data-visualization .options-tab>li:nth-of-type(1) {
+    background: white;
+    margin: 6px 0 0 22px;
+    border-top: 4px solid #FF4E1C;
+    border-right: 1px solid #D4D9E1;
+    border-left: 1px solid #D4D9E1;
+}
+.wrap .content .graph .center-modules .circle-graph-module .data-visualization .options-tab span:nth-of-type(1) {
+    color: #697282;
+}
+.wrap .content .graph .center-modules .circle-graph-module .data-visualization .circle-chart {
+    margin: 24px auto;
+    width: 470px;
+    height: 274px;
+}
+.wrap .content .graph .center-modules .circle-graph-module .data-visualization .circle-chart .curve{
+    width: 470px;
+    height: 274px;
+}
+
+/* 条形图 */
+.wrap .content .graph .center-modules .bar-chart-module {
+    float: right;
+    width: 49%;
+    background: #FFFFFF;
+    box-sizing: border-box;
+    border: 1px solid #C9CED9
+}
+.wrap .content .graph .center-modules .bar-chart-module .total {
+    padding: 10px 14px 10px 22px;
+    border-bottom: 1px solid #C9CED9;
+}
+.wrap .content .graph .center-modules .bar-chart-module .total .total-title{
+    position: relative;
+    overflow: hidden;
+}
+.wrap .content .graph .center-modules .bar-chart-module .total .total-title>p {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0,-50%);
+    font-size: 18px;
+    color: #2a2a2a;
+}
+.wrap .content .graph .center-modules .bar-chart-module .total .store-options {
+    float: right;
+}
+.wrap .content .graph .center-modules .bar-chart-module .total .store-options .date{
+    margin-right: 32px;
+    vertical-align: middle;
+    display: inline-block;
+    border: 1px solid #CBD0DA;
+    border-radius: 5px;
+}
+.wrap .content .graph .center-modules .bar-chart-module .total .store-options .date>li {
+    float: left;
+    padding: 9px 14px;
+    border-right: 1px solid #CBD0DA;
+    font-size: 12px;
+    color: #576071;
+    cursor: pointer;
+}
+.wrap .content .graph .center-modules .bar-chart-module .total .store-options .date>li:nth-of-type(3) {
+    border-right: 0;
+}
+.wrap .content .graph .center-modules .bar-chart-module .data-visualization .options-tab {
+    background: #F5F7FA;
+    font-size: 14px;
+    font-weight: bold;
+}
+.wrap .content .graph .center-modules .bar-chart-module .data-visualization .options-tab>li {
+    display: inline-block;
+    padding: 17px 35px;
+}
+.wrap .content .graph .center-modules .bar-chart-module .data-visualization .options-tab>li:nth-of-type(1) {
+    background: white;
+    margin: 6px 0 0 22px;
+    border-top: 4px solid #FF4E1C;
+    border-right: 1px solid #D4D9E1;
+    border-left: 1px solid #D4D9E1;
+}
+.wrap .content .graph .center-modules .bar-chart-module .data-visualization .options-tab span:nth-of-type(1) {
+    color: #697282;
+}
+.wrap .content .graph .center-modules .bar-chart-module .data-visualization .bar-chart {
+    margin: 24px auto;
+    width: 470px;
+    height: 274px;
+}
+.wrap .content .graph .center-modules .bar-chart-module .data-visualization .bar-chart .curve{
+    width: 470px;
+    height: 274px;
+}
+
+/* 表格 */
+.wrap .content .graph .table-list {
+    margin: 20px auto;
+    padding-bottom: 26px;
+    width: 92%;
+    background: white;
+}
+.wrap .content .graph .table-list img{
+    width: 14px;
+}
+.wrap .content .graph .table-list .total {
+    padding: 10px 14px 10px 22px;
+    border-bottom: 1px solid #C9CED9;
+}
+.wrap .content .graph .table-list .total .total-title{
+    position: relative;
+    overflow: hidden;
+}
+.wrap .content .graph .table-list .total .total-title>p {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0,-50%);
+    font-size: 18px;
+    color: #2a2a2a;
+}
+.wrap .content .graph .table-list .total .store-options {
+    float: right;
+}
+.wrap .content .graph .table-list .total .store-options .date{
+    margin-right: 32px;
+    vertical-align: middle;
+    display: inline-block;
+    border: 1px solid #CBD0DA;
+    border-radius: 5px;
+}
+.wrap .content .graph .table-list .total .store-options .date>li {
+    float: left;
+    padding: 9px 14px;
+    border-right: 1px solid #CBD0DA;
+    font-size: 12px;
+    color: #576071;
+    cursor: pointer;
+}
+.wrap .content .graph .table-list .total .store-options .date>li:nth-of-type(3) {
+    border-right: 0;
+}
+.wrap .content .graph .table-list .data-visualization .options-tab {
+    background: #F5F7FA;
+    font-size: 14px;
+    font-weight: bold;
+}
+.wrap .content .graph .table-list .data-visualization .options-tab>li {
+    display: inline-block;
+    padding: 17px 35px;
+}
+.wrap .content .graph .table-list .data-visualization .options-tab>li:nth-of-type(1) {
+    background: white;
+    margin: 6px 0 0 22px;
+    border-top: 4px solid #FF4E1C;
+    border-right: 1px solid #D4D9E1;
+    border-left: 1px solid #D4D9E1;
+}
+.wrap .content .graph .table-list .data-visualization .options-tab span:nth-of-type(1) {
+    color: #697282;
+}
+
+.wrap .content .graph .table-list .area-list {
+    margin: 20px 22px;
+    width: 95.5%;
+    background: #FFFFFF;
+    box-sizing: border-box;
+    border: 1px solid #C9CED9;
+    text-align: center;
+    border-spacing: 0;
+}
+.wrap .content .graph .table-list .area-list tr{
+    text-align: left;
+}
+.wrap .content .graph .table-list .area-list thead th {
+    padding: 14px 22px;
+    font-size: 14px;
+    color: #2a2a2a;
+    background: #f6f8fb;
+    border-bottom: 1px solid #D7DBE3;
+}
+.wrap .content .graph .table-list .area-list thead .add-button{
+    position: relative;
+}
+.wrap .content .graph .table-list .area-list thead .add-button>img{
+    float: right;
+    cursor: pointer;
+}
+.wrap .content .graph .table-list .area-list thead .add-items {
+    position: absolute;
+    top: 35px;
+    right: 5px;
+    background: white;
+    width: 350px;
+    border: 1px solid #C9CED9;
+}
+.wrap .content .graph .table-list .area-list thead .add-items .add-items-title {
+    position: relative;
+    font-size: 14px;
+    color: #2a2a2a;
+    border-bottom: 1px solid #C9CED9;
+    height: 50px;
+}
+.wrap .content .graph .table-list .area-list thead .add-items .add-items-title>span {
+    position: absolute;
+    top: 50%;
+    left: 22px;
+    transform: translate(0,-50%);
+}
+.wrap .content .graph .table-list .area-list thead .add-items .add-items-title>img {
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    transform: translate(0,-50%);
+}
+.wrap .content .graph .table-list .area-list thead .add-items .checkbox-wrap {
+    padding: 20px 14px 0 36px;
+    height: 242px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #C9CED9;
+    overflow: scroll;
+}
+.wrap .content .graph .table-list .area-list thead .add-items .checkbox-wrap .checkbox-list {
+    float: left;
+    font-size: 12px;
+}
+.wrap .content .graph .table-list .area-list thead .add-items .checkbox-wrap .checkbox-list>li {
+    margin-bottom: 20px;
+}
+.wrap .content .graph .table-list .area-list thead .add-items .checkbox-wrap .checkbox-list>li>label {
+    cursor: pointer;
+}
+.wrap .content .graph .table-list .area-list thead .add-items .checkbox-wrap .checkbox-list>li input {
+    margin-right: 10px;
+}
+.wrap .content .graph .table-list .area-list thead .add-items .choice-button {
+    background: #F5F7FA;
+}
+.wrap .content .graph .table-list .area-list thead .add-items .choice-button .float-right {
+    float: right;
+    padding: 17px 0;
+}
+.wrap .content .graph .table-list .area-list thead .add-items .choice-button .float-right>input {
+    padding: 7px 24px;
+    margin-right: 14px;
+    border: 0;
+    font-size: 14px;
+    border-radius: 3px;
+    background: #E3E8EF;
+    cursor: pointer;
+}
+.wrap .content .graph .table-list .area-list thead .add-items .choice-button .float-right .btn-color{
+    background: #FF491F;
+    color: white;
+}
+.wrap .content .graph .table-list .area-list tbody td {
+    padding: 10px 22px;
+    font-size: 12px;
+    color: #576071;
+    border-bottom: 1px solid #C9CED9;
+}
+.wrap .content .graph .table-list .area-list tbody td a{
+    color:#576071;
+}
+
+@media screen and (min-width: 1280px) {
+    .nav, .wrap{
+        width: 100%;
+    }
+}

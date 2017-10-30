@@ -1,0 +1,242 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Batch Review</title>
+<link href="http://cdn.bootcss.com/semantic-ui/2.1.4/semantic.min.css" rel="stylesheet" type="text/css" >
+<style>
+.container{
+    margin: 20px auto;
+    width:600px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+{% if msg %}
+<div class="ui success message">
+  <i class="close icon"></i>
+  <div class="header">
+    {{msg}}
+  </div>
+</div>
+{% endif %}
+
+<h3>已选上的单品</h3>
+<table class="ui compact celled table ">
+  <thead class="full-width">
+    <tr>
+        <th>企业简称</th>
+        <th>系列</th>
+        <th>分类</th>
+        </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for s in objects %}
+      <tr>
+        <td>{{s.vendor_short_name}}</td>
+        <td>{{s.series}}</td>
+        <td>{{s.category.name}}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h4 class="ui horizontal divider header">
+  操作
+</h4>
+
+
+  <form method="post" class="ui form">
+    {% csrf_token %}
+
+  <div class="fields">
+    <div class="five wide field">
+       <select class="ui search dropdown" id="category0">
+       </select>
+    </div>
+
+    <div class="five wide field">
+       <select class="ui search dropdown" id="category1">
+       <option value="">二级分类</option>
+       </select>
+    </div>
+
+    <div class="five wide field">
+       <select class="ui search dropdown" id="category2" name='category_id'>
+       <option value="">三级分类</option>
+       </select>
+    </div>
+  </div>
+
+  <div class="ui error message"></div>
+  <button class="ui button" type="submit">提交</button>
+
+
+  </form>
+</div>
+
+<script src="{% static 'lib/jquery-3.0.0.min.js' %}"></script>
+<script src="{% static 'lib/semantic.min.js' %}"></script>
+<script>
+
+$(function(){
+
+// $('#vendor-field').search({
+//     apiSettings: {
+//       url: '/standards/auto/vendor?q={query}'
+//     },
+//     minCharacters: 1,
+//     fields: {
+//       title: 'name'
+//     }
+// });
+
+// $('#brand-field').search({
+//     apiSettings: {
+//       url: '/standards/auto/brand?q={query}'
+//     },
+//     minCharacters: 1,
+//     fields: {
+//       title: 'name'
+//     }
+// });
+
+
+// $('#series-field').search({
+//     apiSettings: {
+//       url: '/standards/auto/series?q={query}'
+//     },
+//     minCharacters: 1,
+//     fields: {
+//       title: 'name'
+//     }
+// });
+
+
+function updateCategory(id, target_id, msg, selected){
+  $.get('/standards/category/' + id, function(data){
+    var out_html = '<option value="">'+msg+'</option>';
+    for(var i=0; i < data['results'].length; i++){
+      if(selected != -1 && selected == data['results'][i]['value']){
+        out_html += '<option selected="selected" value="'+data['results'][i]['value']+'">'+ data['results'][i]['name'] +'</option>';
+      }else{
+        out_html += '<option value="'+data['results'][i]['value']+'">'+ data['results'][i]['name'] +'</option>';
+      }
+    }
+    $(target_id).html(out_html);
+  });
+}
+
+$('#category0').on('change', function(){
+  $('#category1').html('<option value="">二级分类</option>');
+  $('#category2').html('<option value="">三级分类</option>');
+  var val = $(this).val();
+  if(val.length > 0){
+    updateCategory(val, '#category1', '二级分类', -1);
+  }
+});
+
+$('#category1').on('change', function(){
+  $('#category2').html('<option value="">三级分类</option>');
+  var val = $(this).val();
+  if(val.length > 0){
+    updateCategory(val, '#category2', '三级分类', -1);
+  }
+});
+
+{% if instance and first %}
+updateCategory(0, '#category0', '一级分类', {{first}});
+updateCategory({{first}}, '#category1', '二级分类', {{second}});
+updateCategory({{second}}, '#category2', '三级分类', {{third}});
+{% else %}
+updateCategory(0, '#category0', '一级分类', -1);
+{% endif %}
+
+
+
+// $('.ui.form')
+//   .form({
+//     on: 'blur',
+//     fields: {
+//       vendor: {
+//         identifier: 'vendor',
+//         rules: [
+//           {
+//             type   : 'empty',
+//             prompt : '厂商不能留空'
+//           }
+//         ]
+//       },
+//       brand: {
+//         identifier: 'brand',
+//         rules: [
+//           {
+//             type   : 'empty',
+//             prompt : '品牌不能留空'
+//           }
+//         ]
+//       },
+//       series: {
+//         identifier: 'series',
+//         rules: [
+//           {
+//             type   : 'empty',
+//             prompt : '系列不能留空'
+//           }
+//         ]
+//       },
+//       category0: {
+//         identifier  : 'category0',
+//         rules: [
+//           {
+//             type   : 'empty',
+//             prompt : '一级分类不能留空'
+//           }
+//         ]
+//       },
+//       category1: {
+//         identifier  : 'category1',
+//         rules: [
+//           {
+//             type   : 'empty',
+//             prompt : '二级分类不能留空'
+//           }
+//         ]
+//       },
+//       category2: {
+//         identifier  : 'category2',
+//         rules: [
+//           {
+//             type   : 'empty',
+//             prompt : '三级分类不能留空'
+//           }
+//         ]
+//       },
+//     }
+//   })
+// ;
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

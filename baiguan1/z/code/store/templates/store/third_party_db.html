@@ -1,0 +1,107 @@
+{% load staticfiles %}
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>合作数据对接</title>
+<link href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css" rel="stylesheet">
+<link href="{% static "css/store/third_party_db.css" %}" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+    <main class="ui page grid">
+    <div class="column">
+        <h1 class="ui center aligned header">超萌合作商户数据对接平台</h1>
+        <div class="ui divider"></div>
+        {% verbatim %}
+        <div class="ui message" v-bind:class="{ hidden: isHidden, error: isError, success: isSuccess }" v-on:click="dismiss" id="error">
+        <i class="close icon"></i>
+        <div>
+            {{ message }}
+        </div>
+        </div>
+        {% endverbatim %}
+        <form class="ui form" id="db_info">
+            {% csrf_token %}
+            <div class="field">
+                <label>数据库类型 </label>
+                <select class="ui selection dropdown" name="dbtype">
+                    <option value="0">Oracle-11g</option>
+                    <option value="1">MySQL</option>
+                    <option value="2">MS SQL Server 2008 or below</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>数据库地址</label>
+                <input type="text" name="dbhost" placeholder="必填 "/>
+            </div>
+            <div class="field">
+                <label>数据库端口号</label>
+                <input type="text" placeholder="选填，若空则使用数据库默认端口号 ", name="dbport"/>
+            </div>
+            <div class="field">
+                <label>数据库用户名 </label>
+                <input type="text" placeholder="必填", name="dbuser"/>
+            </div>
+            <div class="field">
+                <label>数据库用户密码 </label>
+                <input type="password" placeholder="必填", name="dbpassword"/>
+            </div>
+            <div class="field">
+                <label>数据库名</label>
+                <input type="text" placeholder="选填 ", name="dbname"/>
+            </div>
+            <input type="submit" class="ui positive submit button" value="提交">
+        </form>
+        <div class="ui divider"></div>
+        {% verbatim %}
+        <div id='dbinfo'>
+            <a class="ui primary button disabled" href="/integration/navigation" id="nav-btn">
+                返回导航页 
+            </a>
+            <h2 class="header">数据库状态</h2>
+            <div class="ui relaxed divided list" v-show="posted">
+                <div class="item">
+                    <i class="check circle icon large green" v-if="statusCode==0"></i>
+                    <i class="remove circle icon large red" v-else></i>
+                    <div class="content">
+                        <a class="header">连接数据库 </a>
+                    </div>
+                </div>
+                <div class="item">
+                    <i class="check circle icon large green" v-if="tableNum>0"></i>
+                    <i class="remove circle icon large red" v-else></i>
+                    <div class="content">
+                        <a class="header">读取表 </a>
+                        <div class="description">总表数 {{ tableNum }}</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <i class="check circle icon large green" v-if="hasPermission"></i>
+                    <i class="remove circle icon large red" v-else></i>
+                    <div class="content">
+                        <a class="header">数据库用户权限 </a>
+                        <div class="description">权限代码 {{ permission_code }}</div>
+                    </div>
+                </div>
+            </div>
+            <h2 class="header">数据库表 </h2>
+            <div class="ui related divided list" >
+                <div class="item" v-for="(item, index) in tableNames">
+                    <div class="content">
+                        <div class="description">
+                            {{ item }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endverbatim %}
+    </div>
+    </main>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/jquery.form/3.51/jquery.form.min.js"></script>
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+<script src="//cdn.bootcss.com/vue/2.0.3/vue.min.js"></script>
+<script src="{% static "js/store/third_party_db_info.js" %}"></script>
+</body>
+</html>

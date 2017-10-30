@@ -1,0 +1,169 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Batch Review</title>
+<link href="http://cdn.bootcss.com/semantic-ui/2.1.4/semantic.min.css" rel="stylesheet" type="text/css" >
+<style>
+.container{
+    margin: 20px auto;
+    width:600px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+{% if msg %}
+<div class="ui success message">
+  <i class="close icon"></i>
+  <div class="header">
+    {{msg}}
+  </div>
+</div>
+{% endif %}
+
+<h3>已选上的单品</h3>
+<table class="ui compact celled table ">
+  <thead class="full-width">
+    <tr>
+        <th>商品名</th>
+        <th>系列</th>
+        </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for s in sis %}
+      <tr>
+        <td>{{s.name}}</td>
+        <td>{{s.series_txt}}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h4 class="ui horizontal divider header">
+  操作
+</h4>
+
+
+  <form method="post" class="ui form">
+    {% csrf_token %}
+
+  <div class="fields">
+    <div class="six wide field">
+       <select class="ui search dropdown" id="vendor">
+       <option value="">企业简称</option>
+       </select>
+    </div>
+
+    <div class="six wide field">
+       <select class="ui search dropdown" id="brand">
+       <option value="">品牌</option>
+       </select>
+    </div>
+
+    <div class="six wide field">
+       <select class="ui search dropdown" id="series" name='series'>
+       <option value="">系列</option>
+       </select>
+    </div>
+  </div>
+
+  <div class="ui error message"></div>
+  <button class="ui button" type="submit">提交</button>
+
+
+  </form>
+</div>
+
+<script src="{% static 'lib/jquery-3.0.0.min.js' %}"></script>
+<script src="{% static 'lib/semantic.min.js' %}"></script>
+<script>
+
+$(function(){
+
+$.ajaxSetup({
+    data: {csrfmiddlewaretoken: '{{csrf_token}}' },
+});
+
+
+$('.ui.dropdown').dropdown();
+
+function updateCategory(params, target_id, msg, selected){
+  $.post('/standards/series', params, function(data){
+    var out_html = '<option value="">'+msg+'</option>';
+    for(var i=0; i < data['results'].length; i++){
+      if(selected != -1 && selected == data['results'][i]['value']){
+        out_html += '<option selected="selected" value="'+data['results'][i]['value']+'">'+ data['results'][i]['name'] +'</option>';
+      }else{
+        out_html += '<option value="'+data['results'][i]['value']+'">'+ data['results'][i]['name'] +'</option>';
+      }
+    }
+    $(target_id).html(out_html);
+    $(target_id).dropdown('refresh');
+    if(selected){
+      setTimeout(function () {
+        $(target_id).dropdown('set selected', selected);
+      }, 1);
+    }
+
+  });
+}
+
+$('#vendor').on('change', function(){
+
+  setTimeout(function () {
+    $('#brand').dropdown('clear');
+    $('#series').dropdown('clear');
+  }, 1);
+
+  var vendorVal = $(this).val();
+  if(vendorVal.length > 0){
+    updateCategory({'t1': vendorVal}, '#brand', '品牌', -1);
+  }
+});
+
+$('#brand').on('change', function(){
+  $('#series').html('<option value="">系列</option>');
+  setTimeout(function () {
+    $('#series').dropdown('clear');
+  }, 1);
+  var brandVal = $(this).val();
+  if(brandVal.length > 0){
+    vendorVal = $('#vendor').val();
+    // t = '?t1=' + encodeURI(vendorVal) + '&t2=' + encodeURI(brandVal);
+    updateCategory({'t1': vendorVal, 't2': brandVal}, '#series', '系列', -1);
+  }
+});
+
+{% if instance and vendor %}
+updateCategory({}, '#vendor', '企业简称', '{{vendor}}');
+updateCategory({'t1':'{{vendor}}'}, '#brand', '品牌', '{{brand}}');
+updateCategory({'t1':'{{vendor}}','t2':'{{brand}}'}, '#series', '系列', '{{series}}');
+{% else %}
+updateCategory({}, '#vendor', '企业简称', -1);
+{% endif %}
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

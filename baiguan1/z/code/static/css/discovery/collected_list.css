@@ -1,0 +1,22 @@
+
+.collect-wrap{
+    widows: 100%;
+}
+.collect-wrap .collect{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.collect-wrap .collect .remind{
+    display: none;
+    margin: 8%;
+    font-size: 1.5em;
+    color: gray;
+}
+.ui.single.line.table{
+    display: none;
+}
+
+img.ui.image,a{
+    display: inline-block;
+}

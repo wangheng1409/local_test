@@ -1,0 +1,56 @@
+{% load staticfiles %}
+{% load humanize %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>超盟 - SKU 比較</title>
+<link href="http://cdn.bootcss.com/semantic-ui/2.1.4/semantic.min.css" rel="stylesheet" type="text/css" >
+<style>
+.container{
+    margin: 20px auto;
+    width:800px;
+}
+</style>
+<head>
+
+<body>
+<div class="container">
+{{ form.errors }}
+<hr>
+
+<h3>SKU 統計 (共 {{result|length}} 商品)</h3>
+
+{% for k, v in stats.items %}
+<p>{{v.raw}} ({{v.per}}%) 的商品出現在 {{k}} 家店</p>
+{% endfor %}
+<hr>
+
+<table class="ui fixed celled table">
+    <thead>
+        <tr>
+            <th>商品名</th>
+            <th>店ID</th>
+        </tr>
+    </thead>
+    {% for item, store_ids in result %}
+        <tr>
+            <td>{{item}}</td>
+            <td>{{store_ids|join:", "}}</td>
+        </tr>
+    {% endfor %}
+</table>
+</div>
+
+
+<script src="{% static 'lib/jquery-3.0.0.min.js' %}"></script>
+<script src="{% static 'lib/semantic.min.js' %}"></script>
+<script>
+$(function(){
+
+
+});
+</script>
+
+</body>
+</html>

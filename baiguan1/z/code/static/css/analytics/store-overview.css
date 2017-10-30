@@ -1,0 +1,167 @@
+
+/* 选择日期，被选中状态 */
+.date-choiced{
+    background: #d0d5de;
+}
+/* 门店类型被选择 */
+.store-color{
+    background: #FF491F;
+    color: white;
+}
+/* 折线图选择 */
+.graph-color{
+    background: white;
+    border-top: 4px solid #FF4E1C;
+    color: #FF4E1C;
+}
+/* 内容 */
+.wrap .content {
+    overflow: hidden;
+}
+.wrap .content .menu {
+    position: relative;
+    overflow: hidden;
+    height: 78px;
+    border-bottom: 1px solid #C9CED9;
+}
+.wrap .content .menu>span{
+    position: absolute;
+    top: 50%;
+    left: 42px;
+    transform: translate(0,-50%);
+    font-size: 18px;
+}
+.wrap .content .menu .menu-options {
+    position: absolute;
+    top: 50%;
+    right: 68px;
+    transform: translate(0,-50%);
+    font-size: 12px;
+    color: #939BAA;
+}
+.wrap .content .menu .menu-options .date,
+.store-type{
+    vertical-align: middle;
+    display: inline-block;
+}
+.wrap .content .menu .menu-options .date>li{
+    float: left;
+    cursor: pointer;
+}
+.wrap .content .menu .menu-options .date {
+    border: 1px solid #CBD0DA;
+    border-radius: 5px;
+}
+.wrap .content .menu .menu-options .date>li {
+    padding: 9px 14px;
+    border-right: 1px solid #CBD0DA;
+}
+
+.wrap .content .menu .menu-options .date>li:nth-of-type(5) {
+    border-right: 0;
+}
+.wrap .content .menu .menu-options .store-type {
+    margin-left: 32px;
+}
+.wrap .content .menu .menu-options .store-type>span {
+    margin-right: 22px;
+    padding: 4px 14px;
+    border-radius: 9px;
+    cursor: pointer;
+}
+.wrap .content .graphically {
+    background: #E3E8EF;
+    overflow: hidden;
+}
+.wrap .content .graphically .basic-indexes-module {
+    width: 92%;
+    margin: 20px auto;
+    background: #FFFFFF;
+    box-sizing: border-box;
+    border: 1px solid #C9CED9;
+}
+.wrap .content .graphically .basic-indexes-module .total {
+    padding: 22px;
+    border-bottom: 1px solid #C9CED9;
+}
+.wrap .content .graphically .basic-indexes-module .total>p {
+    padding-bottom: 18px;
+    font-size: 18px;
+    border-bottom: 1px solid #CDD2DB;
+}
+.wrap .content .graphically .basic-indexes-module .total .total-items>li {
+    margin-top: 22px;
+    padding: 5px 0;
+    display: inline-block;
+    width: 24%;
+    border-right: 1px solid #CCD1DB;
+}
+.wrap .content .graphically .basic-indexes-module .total .total-items>li:nth-of-type(4) {
+    border: 0;
+}
+.wrap .content .graphically .basic-indexes-module .total .total-items>li>img {
+    margin-left: 30px;
+    width: 38px;
+}
+.wrap .content .graphically .basic-indexes-module .total .total-items>li .sales-target {
+    margin-left: 22px;
+    display: inline-block;
+    font-size: 22px;
+    color: #212121;
+}
+.wrap .content .graphically .basic-indexes-module .total .total-items>li .sales-target>p:nth-of-type(1) {
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #747d8d;
+}
+.wrap .content .graphically .basic-indexes-module .data-visualization .options-tab {
+    padding: 6px 0 0 22px;
+    background: #F5F7FA;
+    font-size: 14px;
+    font-weight: bold;
+    overflow: hidden;
+}
+.wrap .content .graphically .basic-indexes-module .data-visualization .options-tab>li {
+    float: left;
+    padding: 12px 35px;
+    cursor: pointer;
+}
+.wrap .content .graphically .basic-indexes-module .data-visualization .options-tab span:nth-of-type(1) {
+    color: #697282;
+}
+.wrap .content .graphically .basic-indexes-module .data-visualization .line-chart {
+    margin: 24px auto;
+    width: 920px;
+    height: 274px;
+}
+.wrap .content .graphically .basic-indexes-module .data-visualization .line-chart .curve{
+    width: 920px;
+    height: 274px;
+}
+.wrap .content .graphically .area-list {
+    margin: 20px auto;
+    width: 92%;
+    background: #FFFFFF;
+    box-sizing: border-box;
+    border: 1px solid #C9CED9;
+    text-align: center;
+    border-spacing: 0;
+}
+.wrap .content .graphically .area-list thead th {
+    padding: 13px 22px;
+    font-size: 14px;
+    color: #2a2a2a;
+    background: #f6f8fb;
+    border-bottom: 1px solid #D7DBE3;
+}
+.wrap .content .graphically .area-list tbody td {
+    padding: 10px 0;
+    font-size: 12px;
+    color: #576071;
+}
+
+@media screen and (min-width: 1280px) {
+    .nav, .wrap{
+        width: 100%;
+    }
+}

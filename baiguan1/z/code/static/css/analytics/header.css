@@ -1,0 +1,94 @@
+/* 侧边栏颜色 */
+.sidebar-color{
+    color: #FF491F;
+}
+/* 导航栏 */
+.nav{
+    position: relative;
+    width: 1280px;
+    height: 60px;
+    overflow: hidden;
+    border-bottom: 3px solid #FF2F00;
+}
+.nav .logo{
+    position: absolute;
+    top: 50%;
+    left: 40px;
+    transform: translate(0,-50%);
+}
+.nav .logo>img{
+    vertical-align: bottom;
+    width: 92px;
+}
+.nav .logo>h3 {
+    margin-left: 22px;
+    display: inline-block;
+    color: #6B7484;
+}
+.nav .logo .homepage {
+    position: relative;
+    margin-left: 78px;
+    display: inline-block;
+}
+.nav .logo .homepage>span {
+    color: #FF2F00;
+}
+.nav .logo .homepage .triangle {
+    position: absolute;
+    bottom: -16px;
+    left: 28%;
+    width: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid red;
+}
+.nav .user-heads {
+    width: 32px;
+    position: absolute;
+    right: 42px;
+    top: 50%;
+    transform: translate(0,-50%);
+}
+.nav .user-heads>img {
+    width: 100%;
+}
+/* 侧边栏 */
+.wrap{
+    overflow: hidden;
+    width: 1280px;
+    height: 100%;
+}
+.wrap .sidebar {
+    /* 自适应高度 */
+    margin-bottom: -3000px;
+    padding-bottom: 3000px;
+    float: left;
+    width: 216px;
+    height: 100%;
+    background: #2A2A2B;
+    color: #ABAEB3;
+}
+.wrap .sidebar .management-analysis {
+    overflow: hidden;
+}
+.wrap .sidebar .management-analysis .title {
+    margin: 24px 32px;
+}
+.wrap .sidebar img {
+    width: 32px;
+    vertical-align: middle;
+}
+.wrap .sidebar .management-analysis .options {
+    padding: 22px 66px;
+    background: #1E1F20;
+}
+.wrap .sidebar .management-analysis .options>a {
+    display: block;
+    cursor: pointer;
+}
+.wrap .sidebar .management-analysis .options>a:nth-of-type(1) {
+    margin-bottom: 22px;
+}
+.wrap .sidebar .optimize-structure .structure-title{
+    margin: 24px 32px;
+}

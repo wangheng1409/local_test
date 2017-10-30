@@ -1,0 +1,74 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>超盟 - 收藏</title>
+    <link href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/discovery/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/discovery/products_list.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/discovery/collected_list.css' %}">
+    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+</head>
+<body>
+    <!-- nav -->
+    <div class="nav-wrapper">
+        <div class="nav">
+            <div class="nav-title">
+                <a href="">超盟数据(新品)</a>
+            </div>
+            <ul class="nav-list">
+                <li>
+                    <a href="discovery">发现新品</a>
+                </li>
+                <li>
+                    <a href="collect" class="current-color">收藏</a>
+                </li>
+            </ul>
+            <div class="nav-webmaster">
+                <a href="###">帐号</a>
+            </div>
+        </div>
+    </div>
+    <!-- class -->
+    <div class="collect-wrap">
+        <div class="collect">
+            <div class="remind">
+                <span>你还没有收藏任何商品哦，快去添加你喜欢的商品吧</span>
+            </div>
+            <!-- 收藏商品的列表 -->
+            <table class="ui single line table">
+                <thead>
+                    <tr class="center aligned">
+                        <th>
+                            <span>全选</span>
+                            <input type="checkbox"></input>
+                        </th>
+                        <th>收藏商品</th>
+                        <th>收藏时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <!-- 收藏列表 -->
+                <tbody id="product_list"></tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="4">
+                            <div class="ui right floated pagination menu" name="{{ page }}" id="pagination">
+                                <a class="icon item" id="pagi_prev">
+                                    <i class="left chevron icon"></i>
+                                </a>
+                                <a class="icon item" id="pagi_next">
+                                    <i class="right chevron icon"></i>
+                                </a>
+                            </div>
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="{% static 'js/discovery/collected_list.js' %}"></script>
+</html>

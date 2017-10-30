@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>超盟 ／ 可口可乐</title>
+<style>
+a{
+    text-decoration: none;
+    font-size:18px;
+    color:#3a3a3a;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+li{
+    font-size:18px;
+    padding-bottom: 5px;
+}
+</style>
+</head>
+<body>
+<ul>
+    {% for u in urls %}
+        <li><a href="{{u.url}}">{{u.name}}</a></li>
+    {% endfor %}
+</ul>
+
+<h3>新品测试DEMO</h3>
+<ul>
+    {% for n in new_products_testing_urls %}
+        <li><a href="{{n.url}}">{{n.name}}</a></li>
+    {% endfor %}
+</ul>
+
+
+</body>
+</html>

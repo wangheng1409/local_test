@@ -1,0 +1,71 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Extract Tags</title>
+<link href="//cdn.bootcss.com/semantic-ui/2.1.4/semantic.min.css" rel="stylesheet" type="text/css" >
+<style>
+body{
+  width: 900px;
+    margin: 0 auto;
+    position: relative;
+}
+.container{
+    margin: 20px auto;
+    width:800px;
+}
+
+.custom input{
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 0px;
+}
+
+.custom{
+    position: fixed;
+    right: 7%;
+    background-color: black;
+    padding: 10px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="custom">
+  <div><input id='custom-input' type="text" placeholder="自定議標簽"></div>
+  <button class="ui tiny red button action" data-tag-type="brand">品牌</button>
+  <button class="ui tiny green button action" data-tag-type="series">系列</button>
+  <button class="ui tiny yellow button action" data-tag-type="property">商品屬性</button>
+  <button class="ui tiny blue button action" data-tag-type="category">商品分類</button>
+  <button class="ui tiny purple button action" data-tag-type="quantity">商品数量</button>
+  <button class="ui tiny grey button" data-tag-type="ignore">忽略</button>
+  <button class="ui button" id='search-btn'>百度</button>
+</div>
+
+<div class="container">
+  {% for c in tags %}
+    <div class="tag">
+        <h3>## - {{c.0}}</h3>
+        <button class="ui tiny red button action" data-tag-type="brand" data-tag-name="{{c.0}}">品牌</button>
+        <button class="ui tiny green button action" data-tag-type="brand" data-tag-name="{{c.0}}">系列</button>
+        <button class="ui tiny yellow button action" data-tag-type="property" data-tag-name="{{c.0}}">商品屬性</button>
+        <button class="ui tiny blue button action" data-tag-type="category" data-tag-name="{{c.0}}">商品分類</button>
+        <button class="ui tiny purple button action" data-tag-type="quantity" data-tag-name="{{c.0}}">商品数量</button>
+        <button class="ui tiny grey button action" data-tag-type="ignore" data-tag-name="{{c.0}}">忽略</button>
+        <button class="ui tiny pink compact icon button refresh-button"><i class="refresh icon"></i></button>
+      <ul>
+      {% for item in c.1 %}
+        <li data-id="{{item.0}}">{{item.0}} {{item.1}}</li>
+      {% endfor %}
+      </ul>
+    <hr>
+    </div>
+  {% endfor %}
+</div>
+<script src='//cdn.bootcss.com/jquery/3.1.0/jquery.min.js'></script>
+<script src='{% static "js/standard/extract_tags.js" %}'></script>
+</body>
+</html>

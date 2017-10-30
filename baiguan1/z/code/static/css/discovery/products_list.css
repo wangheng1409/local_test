@@ -1,0 +1,246 @@
+
+/* nav */
+
+.nav-wrapper{
+    width: 100%;
+    padding: 20px;
+    background: #333F51;
+}
+.nav-wrapper .nav{
+    margin: 0 auto;
+    width: 1000px;
+}
+.nav-wrapper a{
+    color: #8795A5;
+}
+.nav-wrapper .nav-title{
+    display: inline-block;
+}
+.nav-wrapper .nav-title>a{
+    font-size: 1.5em;
+}
+.nav-wrapper .nav-list{
+    display: inline-block;
+    vertical-align: bottom;
+    width: 45%;
+}
+.nav-wrapper .nav-list>li{
+    float: left;
+    margin-left: 25%;
+}
+.nav-wrapper .nav-webmaster{
+    float: right;
+    margin-top: 0.7%;
+}
+/* 当前页面选中状态 */
+.nav-wrapper .nav-list .current-color{
+    color: #FFF;
+}
+/* 商品的价格 */
+.date-price{
+    color: red;
+}
+/* 商品分 */
+.date-score{
+    color: coral;
+}
+/* 当前选中的日期 */
+.current-date{
+    color: orange;
+}
+
+/* con-product */
+.con-wrapper,
+.con-product .list-wrapper .con-list>li img{
+    width: 100%;
+    height: 167px;
+}
+.con-product .list-wrapper .con-list>li>a:hover{
+    cursor: pointer;
+}
+.con-product .list-wrapper .con-list>li a,
+p{
+    margin-top: 3px;
+    font-size: 0.8em;
+}
+.con-product .list-wrapper .con-list>li span{
+    font-size: 1.3em;
+}
+
+.con-product .list-wrapper .con-list>li>a{
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.con-wrapper .con-product{
+    margin: 0 auto;
+    width: 1000px;
+}
+.con-wrapper .con-product .con-date-choice{
+    display: none;
+    position: relative;
+    height: 57px;
+}
+.con-wrapper .con-product .con-date-choice .con-city{
+    position: absolute;
+    top: 50%;
+    transform: translate(0,-50%);
+    z-index: 2;
+    width: 50%;
+}
+.con-wrapper .con-product .con-date-choice .con-city>div{
+    margin-right: 3%;
+    display: inline-block;
+}
+.con-wrapper .con-product .con-date-choice .con-city .city-list>a{
+    float: left;
+}
+.con-wrapper .con-product .con-date-choice .con-date{
+    float: right;
+    margin-top: 2%;
+    width: 22%;
+}
+.con-wrapper .con-product .con-date-choice .con-date .con-date-list>li{
+    display: inline-block;
+    margin-left: 11%;
+}
+
+.con-wrapper .con-product .con-class-choice{
+    display: none;
+    border-top: 1px solid #CCC;
+}
+.con-wrapper .con-product .con-class-choice .con-class-all{
+    position: relative;
+    height: 57px;
+}
+.con-wrapper .con-product .con-class-choice .con-class-all .con-class-btn{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0,-50%);
+    z-index: 1;
+}
+.con-wrapper .con-product .con-class-choice .con-class-all .con-class-btn .con-cat-list{
+    display: inline-block;
+}
+/* 商品分类 */
+.yellow.ui.button{
+    width: 200px;
+}
+.ui.vertical.buttons.create-list{
+    display: none;
+    position: absolute;
+    width: 200px;
+    background: white;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+.fir_list{
+    box-shadow: 0 0 0 2px #ff7701;
+}
+.sec_list a.ui.header.item{
+    font-size: 1.2em;
+}
+.sec_list a.item{
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.column.relaxed.divided.grid.sec_wrapper{
+    position: absolute;
+    margin: -11.5% 0 0 89%;
+    background: white;
+    width: 800px;
+    box-shadow: 0 0 0 2px #cfd0d2;
+    border-radius: 4px;
+}
+
+.con-wrapper .con-product .con-class-choice .con-class-all .con-class-shop{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(0,-50%);
+    width: 60%;
+}
+.con-wrapper .con-product .con-class-choice .con-class-all .con-class-shop .con-class-list>li{
+    margin: 2% 4%;
+}
+.con-wrapper .con-product .con-class-choice .con-class-all .con-class-shop .con-class-list{
+    width: 63%;
+}
+.con-wrapper .con-product .con-class-choice .con-class-all .con-class-shop .page-num{
+    width: 32%;
+    margin-left: 4%;
+}
+.con-wrapper .con-product .con-class-choice .con-class-all .con-class-shop .page-num>div{
+    margin-left: 16%;
+}
+
+.con-wrapper .con-product .con-class-choice .con-class-all .con-class-shop .con-class-list,
+.con-class-list>li,
+.page-num,
+.list-wrapper .con-list>li>a{
+    display: inline-block;
+}
+
+.con-wrapper .con-product .list-wrapper{
+    display: none;
+    width: 100%;
+    border: 1px solid #CCC;
+    overflow: hidden;
+}
+.con-wrapper .con-product .list-wrapper .grading{
+    padding: 20px 0 0 20px;
+}
+
+.con-wrapper .con-product .list-wrapper .con-list{
+    overflow: hidden;
+}
+.con-wrapper .con-product .list-wrapper .con-list>li{
+    position: relative;
+    margin: 2% 1%;
+    display: inline-block;
+    width: 179px;
+    border: 1px solid white;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.con-wrapper .con-product .list-wrapper .con-list>li:hover{
+    border: 1px solid lightgray;
+}
+.con-wrapper .con-product .list-wrapper .con-list>li>i{
+    position: absolute;
+    top: -14px;
+    left: 0;
+}
+
+.con-wrapper .con-product .list-wrapper .con-list .order-num{
+    position: absolute;
+    bottom: 13px;
+    right: 12px;
+    line-height: 22px;
+    text-align: center;
+    width: 25px;
+    height: 25px;
+    border: 1px solid rgb(24, 171, 164);
+    border-radius: 50%;
+    color: rgb(24, 171, 164);
+}
+
+.con-wrapper .con-product .list-wrapper .pagination{
+    float: right;
+    margin: 2% 0;
+}
+
+/* 500报错处理 */
+.error{
+    margin: 4%;
+    font-size: 1.5em;
+    color: gray;
+}
+.error>a{
+    color: coral;
+    margin: 0 5px;
+}

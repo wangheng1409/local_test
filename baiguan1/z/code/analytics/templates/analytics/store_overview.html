@@ -1,0 +1,148 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>超盟 - 总体概况</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/analytics/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/analytics/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/analytics/store-overview.css' %}">
+    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/echarts/3.2.3/echarts.min.js"></script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <div class="nav">
+        <div class="logo">
+            <img src="{% static 'images/logo.jpg' %}">
+            <h3>连锁数据分析</h3>
+            <div class="homepage">
+                <span>首页</span>
+                <div class="triangle"></div>
+            </div>
+        </div>
+        <div class="user-heads">
+            <img src="{% static 'images/heads.png' %}">
+        </div>
+    </div>
+    <div class="wrap" id="wrap">
+        <!-- 侧边栏 -->
+        <div class="sidebar" id="sidebar">
+            <div class="management-analysis">
+                <div class="title">
+                    <img src="{% static 'images/store.png'%}" alt="">
+                    <span>经营分析</span>
+                </div>
+                <div class="options">
+                    <a class="sidebar-color" href="/analytics/chain-stores/store-overview">总体概况</a>
+                    <a href="/analytics/chain-stores/stores/store-analysis">门店分析</a>
+                </div>
+            </div>
+            <div class="optimize-structure">
+                <div class="structure-title">
+                    <img src="{% static 'images/store.png'%}" alt="">
+                    <span>商品结构优化</span>
+                </div>
+            </div>
+        </div>
+        <!-- 内容 -->
+        <div class="content">
+            <div class="menu">
+                <span>总体概况</span>
+                <div class="menu-options">
+                    <ul class="date" id="day">
+                        <li day="1">昨天</li>
+                        <li class="date-choiced" day="2" >当周</li>
+                        <li day="3" >当月</li>
+                        <li day="4" >当季度</li>
+                        <li day="5" >当年</li>
+                    </ul>
+                    <div class="store-type" id="store_property">
+                        <span class="store-color" tag="1">连锁</span>
+                        <span tag="2">加盟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="graphically">
+                <div class="basic-indexes-module">
+                    <div class="total">
+                        <p>基础指标</p>
+                        <ul class="total-items">
+                            <li>
+                                <img src="{% static 'images/store.png'%}" alt="">
+                                <div class="sales-target">
+                                    <p id="total_target">销售任务</p>
+                                    <p id="tsales">6000万</p>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="{% static 'images/store.png'%}" alt="">
+                                <div class="sales-target">
+                                    <p >完成率</p>
+                                    <p id="total_finish_rate">110%</p>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="{% static 'images/store.png'%}" alt="">
+                                <div class="total_balance">
+                                    <p>差额</p>
+                                    <p id="balance">＋600万</p>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="{% static 'images/store.png'%}" alt="">
+                                <div class="sales-target">
+                                    <p >库存周转率</p>
+                                    <p id="total_turnover">11天</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="data-visualization">
+                        <ul class="options-tab" id="total_data">
+                            <li class="graph-color"  rule="sales">
+                                <span>销售额</span>
+                                <span>6000万</span>
+                             </li>
+                            <li  rule="gross_profit">
+                                <span>毛利额</span>
+                                <span>1800万</span>
+                             </li>
+                            <li  rule="num_trades">
+                                <span>客单量</span>
+                                <span>1000万</span>
+                             </li>
+                            <li  rule="each_num_trades_sales">
+                                <span>客单价</span>
+                                <span>9.6元</span>
+                             </li>
+                        </ul>
+                        <div class="line-chart">
+                            <!-- 折线图 -->
+                            <div class="curve" id="main"></div>
+                        </div>
+                    </div>
+                </div>
+                <table class="area-list">
+                    <thead>
+                        <tr>
+                            <th>区域</th>
+                            <th>销售任务</th>
+                            <th>实际完成金额</th>
+                            <th>完成率</th>
+                            <th>差额</th>
+                            <th>毛利额</th>
+                            <th>销售额增长(环比)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="area_list">
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="{% static 'js/analytics/line_chart.js' %}"></script>
+</body>
+
+</html>

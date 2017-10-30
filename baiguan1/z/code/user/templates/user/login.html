@@ -1,0 +1,56 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title> 登陆超盟  </title>
+<link href="{% static "css/login.css" %}" rel="stylesheet" type="text/css" >
+<style>
+.container{
+    margin: 20px auto;
+    width:600px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="landed-wrapper">
+    <div class="landed">
+        <div class="landed-logo">
+            <img src="{% static "images/logo.jpg" %}" alt="">
+        </div>
+        <div class="landed-list">
+            <form action="{% url 'login' %}" method="post" accept-charset="utf-8">
+                {% csrf_token %}
+                <ul>
+                    <li>
+                        <input id="id_username" maxlength="254" name="username" type="text" placeholder="用户名" />
+                    </li>
+                    <li>
+                        <input id="id_password" name="password" type="password" placeholder="密码" />
+                    </li>
+                    <li class="warning">
+                        {% if form.errors %}
+                        <p>用户名或密码错误，请重新输入！</p>
+                        {% endif %}
+
+                        {% if next %}
+                            {% if user.is_authenticated %}
+                            <p>您的帐号无权访问此页面，请用有权限的帐号重新登录！</p>
+                            {% else %}
+                            <p>查询，请登录！</p>
+                            {% endif %}
+                        {% endif %}
+                    </li>
+                    <li>
+                        <input type="submit" name="" value="登陆" class="btn-bg">
+                    </li>
+                </ul>
+                <input type="hidden" name="next" value="{{ next }}" />
+            </form>
+        </div>
+    </div>
+</div>
+</body>

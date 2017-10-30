@@ -1,0 +1,23 @@
+{
+  "name": "chaomeng-bussiness",
+  "description": "\"Chaomeng Bussiness\"",
+  "main": "index.js",
+  "authors": [
+    "Tobias Lei <tobias.garrick@gmail.com>",
+    "Tao LI <litao912002@hotmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bower-jquery-sparkline": "^2.1.3",
+    "StickyTableHeaders": "^0.1.19"
+  }
+}

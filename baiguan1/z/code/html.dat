@@ -1,0 +1,666 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="gb2312" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="keywords" content="GDSN, 商品, 产品, 生产企业, 制造商, 零售商, GS1China, 中国物品编码中心" />
+    <meta name="description" content="UNSPSC 联合国标准产品服务与分类代码 分类产品列表 " />
+    <meta name="save" content="history" />
+    
+    <meta http-equiv='Expires' content='0'>
+    <meta http-equiv='Cache-Control' content='no-cache'>
+    <meta http-equiv='Pragma' content='no-cache'>
+    <title>条码数据库，商品信息，生产企业，制造商，零售商，全球数据同步--搜索结果</title>
+    <link rel="stylesheet" href="http://www.anccnet.com/css/common.css" />
+    <link rel="stylesheet" href="http://www.anccnet.com/css/paginationWeb.css" />
+    <link rel="stylesheet" href="http://www.anccnet.com/css/width100.css" />
+<link rel="stylesheet" href="http://www.anccnet.com/V3/style/zCool-1.0/icons.css" />
+<link rel="stylesheet" href="http://www.anccnet.com/V3/style/zCool-1.0/form.css" />
+<link rel="stylesheet" href="http://www.anccnet.com/style/searchResult.css" />
+    <style type="text/css">
+#results li { }
+.result {
+    
+	margin:0;
+	padding:10px 0;
+	border-bottom:1px solid #999;
+}
+.result .p-img {
+	float:left;
+	margin:0;
+	padding:1px;
+	border:1px solid #999;
+	width:90px;
+	height:90px;
+}
+.result .p-img a {
+	display:block;
+	overflow:hidden;
+	width:90px;
+	height:90px;
+}
+.result .p-img a img {
+	display:block;
+	width:90px;
+	height:90px;
+}
+.result .p-supplier {
+	float:right;
+	width:23em;
+}
+.result .p-info { margin:0 25em 0 110px; }
+.result dt {
+	float:left;
+	font-weight:bold;
+}
+.result dd { }
+</style>
+<script src="http://www.anccnet.com/V3/js/zCool-1.0/zCool.js"></script>
+<script src="http://www.anccnet.com/V3/js/zCool-1.0/zCool.Form.js"></script>
+<script src="http://www.anccnet.com/V3/js/zCool-1.0/zCool.String.js"></script>
+<script src="http://www.anccnet.com/js/UICheck/LoginCheck.js"></script>
+
+
+
+<script></script>
+    <script type ="text/javascript" > 
+					
+ 
+     // 定义：限制元素的宽高在一个规定尺寸的容器内
+     // @img DOM Element 通常为图片
+     // @minWidth UInt 限定元素的最大宽度
+     // @minWidth UInt 限定元素的最大高度
+     // @fill Boolean 在宽高都不足规定的尺寸时，true就等比放大至规定的尺寸，否则保持原样
+     function limitImgSize(img, maxWidth, maxHeight, fill) {
+
+         var style = img.style, ow, oh, wRatio, hRatio, width, height;
+
+         //var toLocate = $.finalStyle(img, 'position') === 'absolute';
+         var toLocate = true;
+
+         style.top = style.left = '-32767px';
+         style.width = style.height = 'auto';
+
+         if ((ow = img.offsetWidth) && (oh = img.offsetHeight) &&
+			((ow > maxWidth || oh > maxHeight) || (fill && ow < maxWidth && oh < maxHeight))) {
+
+             if ((wRatio = ow / maxWidth) >= (hRatio = oh / maxHeight)) {
+                 style.width = maxWidth + 'px';
+                 style.left = '';
+                 style.height = (height = oh / wRatio) + 'px';
+                 style.top = toLocate ? (maxHeight - height) / 2 + 'px' : '';
+             }
+             else {
+                 style.height = maxHeight + 'px';
+                 style.top = '';
+                 style.width = (width = ow / hRatio) + 'px';
+                 style.left = toLocate ? (maxWidth - width) / 2 + 'px' : '';
+             }
+         }
+         else {
+             if (toLocate) {
+                 style.top = (maxHeight - oh) / 2 + 'px';
+                 style.left = (maxWidth - ow) / 2 + 'px';
+             }
+             else {
+                 style.top = style.left = '';
+             }
+         }
+
+         return img;
+     };
+    </script>
+    </head>
+    <body >
+    <form name="form1" method="post" action="searchResult2.aspx?rPage=1&amp;keyword=%u5317%u51b0%u6d0b(%u5317%u4eac)%u996e%u6599%u98df%u54c1%u6709%u9650%u516c%u53f8" id="form1">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJMzg5NjEyNTU2D2QWAgIBD2QWCAIDDw8WAh4EVGV4dAWFATxmb250IGNvbG9yPSdibGFjayc+57O757uf5Lit56ym5ZCI5p2h5Lu2PC9mb250PiDljJflhrDmtIso5YyX5LqsKemlruaWmemjn+WTgeaciemZkOWFrOWPuDxmb250IGNvbG9yPSdibGFjayc+IOeahOWVhuWTgeacie+8mjwvZm9udD5kZAIHDxYCHgdWaXNpYmxlaGQCCw8PFgYeEEN1cnJlbnRQYWdlSW5kZXgCAR4OQ3VzdG9tSW5mb1RleHQFjwHmgLvorrDlvZXmlbDvvJo8Zm9udCBjb2xvcj0iYmx1ZSI+PGI+NzM8L2I+PC9mb250PiDmgLvpobXmlbDvvJo8Zm9udCBjb2xvcj0iYmx1ZSI+PGI+NTwvYj48L2ZvbnQ+IOW9k+WJjemhte+8mjxmb250IGNvbG9yPSJyZWQiPjxiPjE8L2I+PC9mb250Ph4LUmVjb3JkY291bnQCSWRkAg0PFgIfAWhkZJQp0nrKcJaBlS+nFtHRdq3ifOE/" />
+</div>
+
+<div>
+
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWAgLf9I7FAwLd5eLQCRTiBzzsIqBSNvHJ89tMMGQ4klgD" />
+</div>
+      <div class="wrap">
+        <div class="header">
+            <h1>
+                <a href="http://www.gds.org.cn">
+                    <img name="logoBar" src="/img/logoBar1.gif" alt="中国商品信息服务平台" /></a></h1>
+            <div id="gdsSearch" class="search">
+                
+                <p> <label for="keyword" class="input-prompt-label"><input name="keyword" type="text" maxlength="2048" id="keyword" tabindex="1" name="keyword" type="text" size="55" class="inputText" /></label>
+         
+                    <label for="gdsBtn" class="for-gdsBtn">
+            <button type="button" name="gdsBtn" id="gdsBtn">搜&nbsp;&nbsp;索</button>
+          </label>
+                  
+                </p>
+            </div>
+        </div>
+        <div class="bodyer">
+          <div class="mainly">
+            <div class="main">
+              <h2>
+                <div style ="padding-top :10px"> <q>
+                  <span id="Label1"><font color='black'>系统中符合条件</font> 北冰洋(北京)饮料食品有限公司<font color='black'> 的商品有：</font></span>
+                    <br />
+                  <span id="Label3"></span>
+                  </q></div>
+                </h2>
+              
+            </div>
+              <div id="outter">
+                <ol id="results">
+                  
+                      <li>
+                        <div class="result">
+                          <p class="p-img" align="center"><a id="repList_ctl00_herl" target="_blank"> <img src="/img/empty_90-90.8.png" id="repList_ctl00_productimg" width="90" height="90" onload="limitImgSize(this, 90, 90,true);" /></a></p>
+                          <dl class="p-supplier">
+                            <dt>商标：</dt>
+                            <dd>北冰洋</dd>
+                            <dt>发布厂家：</dt>
+                            <dd>
+                              <a id="repList_ctl00_firmLink" href="http://www.anccnet.com/info_search/factory/Detail.aspx?id=F25F56A9F703ED743E7D6D29C7798D5097F306C14607F8E0588A5D6BDD3F01DD&amp;temp=0" target="_blank" style="text-decoration:none;">北冰洋(北京)饮料食品有限公司</a>
+                            </dd>
+                          </dl>
+                          <dl class="p-info">
+                            <dt>商品条码：</dt>
+                            <dd> <a href="http://www.anccnet.com/goods.aspx?base_id=F25F56A9F703ED74B42AE6C2DB4F9BF59FF5287A6009669E7DC14A0C6262BB63C13FBCC4FB46D854"
+                                                                        target="_blank"> 06955608310041</a></dd>
+                            <dt>名称：</dt>
+                            <dd> 易拉罐桔汁汽水</dd>
+                            <dt>规格型号：</dt>
+                            <dd> 330ml</dd>
+                            <dt>描述：</dt>
+                            <dd> ,</dd>
+                          </dl>
+                          <br clear="all" />
+                        </div>
+                      </li>
+                    
+                      <li>
+                        <div class="result">
+                          <p class="p-img" align="center"><a id="repList_ctl01_herl" target="_blank"> <img src="/img/empty_90-90.8.png" id="repList_ctl01_productimg" width="90" height="90" onload="limitImgSize(this, 90, 90,true);" /></a></p>
+                          <dl class="p-supplier">
+                            <dt>商标：</dt>
+                            <dd>北冰洋</dd>
+                            <dt>发布厂家：</dt>
+                            <dd>
+                              <a id="repList_ctl01_firmLink" href="http://www.anccnet.com/info_search/factory/Detail.aspx?id=F25F56A9F703ED743E7D6D29C7798D5097F306C14607F8E0588A5D6BDD3F01DD&amp;temp=0" target="_blank" style="text-decoration:none;">北冰洋(北京)饮料食品有限公司</a>
+                            </dd>
+                          </dl>
+                          <dl class="p-info">
+                            <dt>商品条码：</dt>
+                            <dd> <a href="http://www.anccnet.com/goods.aspx?base_id=F25F56A9F703ED74CB54342B7F8623CB13D8298D7682B05B4CAA1F45CCA8F1BD7727CA6367397282"
+                                                                        target="_blank"> 06955608310058</a></dd>
+                            <dt>名称：</dt>
+                            <dd> 易拉罐橙汁汽水</dd>
+                            <dt>规格型号：</dt>
+                            <dd> 330ml</dd>
+                            <dt>描述：</dt>
+                            <dd> ,</dd>
+                          </dl>
+                          <br clear="all" />
+                        </div>
+                      </li>
+                    
+                      <li>
+                        <div class="result">
+                          <p class="p-img" align="center"><a id="repList_ctl02_herl" target="_blank"> <img src="/img/empty_90-90.8.png" id="repList_ctl02_productimg" width="90" height="90" onload="limitImgSize(this, 90, 90,true);" /></a></p>
+                          <dl class="p-supplier">
+                            <dt>商标：</dt>
+                            <dd>北冰洋</dd>
+                            <dt>发布厂家：</dt>
+                            <dd>
+                              <a id="repList_ctl02_firmLink" href="http://www.anccnet.com/info_search/factory/Detail.aspx?id=F25F56A9F703ED743E7D6D29C7798D5097F306C14607F8E0588A5D6BDD3F01DD&amp;temp=0" target="_blank" style="text-decoration:none;">北冰洋(北京)饮料食品有限公司</a>
+                            </dd>
+                          </dl>
+                          <dl class="p-info">
+                            <dt>商品条码：</dt>
+                            <dd> <a href="http://www.anccnet.com/goods.aspx?base_id=F25F56A9F703ED742DE6818FEFAB97729EBD4A041A022E3FD70A1A8B5B7463F548F7EF059A06BA0F"
+                                                                        target="_blank"> 06955608310089</a></dd>
+                            <dt>名称：</dt>
+                            <dd> 易拉罐苏打水</dd>
+                            <dt>规格型号：</dt>
+                            <dd> 330ml</dd>
+                            <dt>描述：</dt>
+                            <dd> ,</dd>
+                          </dl>
+                          <br clear="all" />
+                        </div>
+                      </li>
+                    
+                      <li>
+                        <div class="result">
+                          <p class="p-img" align="center"><a id="repList_ctl03_herl" target="_blank"> <img src="/img/empty_90-90.8.png" id="repList_ctl03_productimg" width="90" height="90" onload="limitImgSize(this, 90, 90,true);" /></a></p>
+                          <dl class="p-supplier">
+                            <dt>商标：</dt>
+                            <dd>北冰洋</dd>
+                            <dt>发布厂家：</dt>
+                            <dd>
+                              <a id="repList_ctl03_firmLink" href="http://www.anccnet.com/info_search/factory/Detail.aspx?id=F25F56A9F703ED743E7D6D29C7798D5097F306C14607F8E0588A5D6BDD3F01DD&amp;temp=0" target="_blank" style="text-decoration:none;">北冰洋(北京)饮料食品有限公司</a>
+                            </dd>
+                          </dl>
+                          <dl class="p-info">
+                            <dt>商品条码：</dt>
+                            <dd> <a href="http://www.anccnet.com/goods.aspx?base_id=F25F56A9F703ED74C68A96A2D8A87B8086E2EBC2DF19D7BADD14B81AF45F439BD847BF1D14D6F8AD"
+                                                                        target="_blank"> 06955608310119</a></dd>
+                            <dt>名称：</dt>
+                            <dd> 易拉罐桔汁汽水</dd>
+                            <dt>规格型号：</dt>
+                            <dd> 330ml*6</dd>
+                            <dt>描述：</dt>
+                            <dd> ,</dd>
+                          </dl>
+                          <br clear="all" />
+                        </div>
+                      </li>
+                    
+                      <li>
+                        <div class="result">
+                          <p class="p-img" align="center"><a id="repList_ctl04_herl" target="_blank"> <img src="/img/empty_90-90.8.png" id="repList_ctl04_productimg" width="90" height="90" onload="limitImgSize(this, 90, 90,true);" /></a></p>
+                          <dl class="p-supplier">
+                            <dt>商标：</dt>
+                            <dd>北冰洋</dd>
+                            <dt>发布厂家：</dt>
+                            <dd>
+                              <a id="repList_ctl04_firmLink" href="http://www.anccnet.com/info_search/factory/Detail.aspx?id=F25F56A9F703ED743E7D6D29C7798D5097F306C14607F8E0588A5D6BDD3F01DD&amp;temp=0" target="_blank" style="text-decoration:none;">北冰洋(北京)饮料食品有限公司</a>
+                            </dd>
+                          </dl>
+                          <dl class="p-info">
+                            <dt>商品条码：</dt>
+                            <dd> <a href="http://www.anccnet.com/goods.aspx?base_id=F25F56A9F703ED74404A95F82B41AB8C44E87F3AF110D62EED6D063DFCBD21E0717EEFA629FE7CE0"
+                                                                        target="_blank"> 06955608310126</a></dd>
+                            <dt>名称：</dt>
+                            <dd> 易拉罐橙汁汽水</dd>
+                            <dt>规格型号：</dt>
+                            <dd> 330ml*6</dd>
+                            <dt>描述：</dt>
+                            <dd> ,</dd>
+                          </dl>
+                          <br clear="all" />
+                        </div>
+                      </li>
+                    
+                      <li>
+                        <div class="result">
+                          <p class="p-img" align="center"><a id="repList_ctl05_herl" target="_blank"> <img src="/img/empty_90-90.8.png" id="repList_ctl05_productimg" width="90" height="90" onload="limitImgSize(this, 90, 90,true);" /></a></p>
+                          <dl class="p-supplier">
+                            <dt>商标：</dt>
+                            <dd>北冰洋</dd>
+                            <dt>发布厂家：</dt>
+                            <dd>
+                              <a id="repList_ctl05_firmLink" href="http://www.anccnet.com/info_search/factory/Detail.aspx?id=F25F56A9F703ED743E7D6D29C7798D5097F306C14607F8E0588A5D6BDD3F01DD&amp;temp=0" target="_blank" style="text-decoration:none;">北冰洋(北京)饮料食品有限公司</a>
+                            </dd>
+                          </dl>
+                          <dl class="p-info">
+                            <dt>商品条码：</dt>
+                            <dd> <a href="http://www.anccnet.com/goods.aspx?base_id=F25F56A9F703ED745523DB1D2924878CE61E572084D952EB72CA85567DF3AB83EA3592EC5D555574"
+                                                                        target="_blank"> 06955608310096</a></dd>
+                            <dt>名称：</dt>
+                            <dd> 易拉罐苏打水</dd>
+                            <dt>规格型号：</dt>
+                            <dd> 330ml*6</dd>
+                            <dt>描述：</dt>
+                            <dd> ,</dd>
+                          </dl>
+                          <br clear="all" />
+                        </div>
+                      </li>
+                    
+                      <li>
+                        <div class="result">
+                          <p class="p-img" align="center"><a id="repList_ctl06_herl" target="_blank"> <img src="/img/empty_90-90.8.png" id="repList_ctl06_productimg" width="90" height="90" onload="limitImgSize(this, 90, 90,true);" /></a></p>
+                          <dl class="p-supplier">
+                            <dt>商标：</dt>
+                            <dd>北冰洋</dd>
+                            <dt>发布厂家：</dt>
+                            <dd>
+                              <a id="repList_ctl06_firmLink" href="http://www.anccnet.com/info_search/factory/Detail.aspx?id=F25F56A9F703ED743E7D6D29C7798D5097F306C14607F8E0588A5D6BDD3F01DD&amp;temp=0" target="_blank" style="text-decoration:none;">北冰洋(北京)饮料食品有限公司</a>
+                            </dd>
+                          </dl>
+                          <dl class="p-info">
+                            <dt>商品条码：</dt>
+                            <dd> <a href="http://www.anccnet.com/goods.aspx?base_id=F25F56A9F703ED74E2DA7239ED9D3ADC60053092B6D22D41761B567BD843828A03A1DC461086E5E8"
+                                                                        target="_blank"> 06955608310065</a></dd>
+                            <dt>名称：</dt>
+                            <dd> 易拉罐桔汁汽水</dd>
+                            <dt>规格型号：</dt>
+                            <dd> 330ml*6*4</dd>
+                            <dt>描述：</dt>
+                            <dd> ,</dd>
+                          </dl>
+                          <br clear="all" />
+                        </div>
+                      </li>
+                    
+                      <li>
+                        <div class="result">
+                          <p class="p-img" align="center"><a id="repList_ctl07_herl" target="_blank"> <img src="/img/empty_90-90.8.png" id="repList_ctl07_productimg" width="90" height="90" onload="limitImgSize(this, 90, 90,true);" /></a></p>
+                          <dl class="p-supplier">
+                            <dt>商标：</dt>
+                            <dd>北冰洋</dd>
+                            <dt>发布厂家：</dt>
+                            <dd>
+                              <a id="repList_ctl07_firmLink" href="http://www.anccnet.com/info_search/factory/Detail.aspx?id=F25F56A9F703ED743E7D6D29C7798D5097F306C14607F8E0588A5D6BDD3F01DD&amp;temp=0" target="_blank" style="text-decoration:none;">北冰洋(北京)饮料食品有限公司</a>
+                            </dd>
+                          </dl>
+                          <dl class="p-info">
+                            <dt>商品条码：</dt>
+                            <dd> <a href="http://www.anccnet.com/goods.aspx?base_id=F25F56A9F703ED744A22CC239C5588987701B24D74BD0B17DC9072DCE93C0136C92D8B1645E6A3E9"
+                                                                        target="_blank"> 06955608310072</a></dd>
+                            <dt>名称：</dt>
+                            <dd> 易拉罐橙汁汽水</dd>
+                            <dt>规格型号：</dt>
+                            <dd> 330ml*6*4</dd>
+                            <dt>描述：</dt>
+                            <dd> ,</dd>
+                          </dl>
+                          <br clear="all" />
+                        </div>
+                      </li>
+                    
+                      <li>
+                        <div class="result">
+                          <p class="p-img" align="center"><a id="repList_ctl08_herl" target="_blank"> <img src="/img/empty_90-90.8.png" id="repList_ctl08_productimg" width="90" height="90" onload="limitImgSize(this, 90, 90,true);" /></a></p>
+                          <dl class="p-supplier">
+                            <dt>商标：</dt>
+                            <dd>北冰洋</dd>
+                            <dt>发布厂家：</dt>
+                            <dd>
+                              <a id="repList_ctl08_firmLink" href="http://www.anccnet.com/info_search/factory/Detail.aspx?id=F25F56A9F703ED743E7D6D29C7798D5097F306C14607F8E0588A5D6BDD3F01DD&amp;temp=0" target="_blank" style="text-decoration:none;">北冰洋(北京)饮料食品有限公司</a>
+                            </dd>
+                          </dl>
+                          <dl class="p-info">
+                            <dt>商品条码：</dt>
+                            <dd> <a href="http://www.anccnet.com/goods.aspx?base_id=F25F56A9F703ED74F42C72CB974C242A2D6C004B41EB85F34328736C526C5AFE67235EDFB8127F88"
+                                                                        target="_blank"> 06955608310102</a></dd>
+                            <dt>名称：</dt>
+                            <dd> 易拉罐苏打水</dd>
+                            <dt>规格型号：</dt>
+                            <dd> 330ml*6*4</dd>
+                            <dt>描述：</dt>
+                            <dd> ,</dd>
+                          </dl>
+                          <br clear="all" />
+                        </div>
+                      </li>
+                    
+                      <li>
+                        <div class="result">
+                          <p class="p-img" align="center"><a id="repList_ctl09_herl" target="_blank"> <img src="/img/empty_90-90.8.png" id="repList_ctl09_productimg" width="90" height="90" onload="limitImgSize(this, 90, 90,true);" /></a></p>
+                          <dl class="p-supplier">
+                            <dt>商标：</dt>
+                            <dd>北冰洋</dd>
+                            <dt>发布厂家：</dt>
+                            <dd>
+                              <a id="repList_ctl09_firmLink" href="http://www.anccnet.com/info_search/factory/Detail.aspx?id=F25F56A9F703ED743E7D6D29C7798D5097F306C14607F8E0588A5D6BDD3F01DD&amp;temp=0" target="_blank" style="text-decoration:none;">北冰洋(北京)饮料食品有限公司</a>
+                            </dd>
+                          </dl>
+                          <dl class="p-info">
+                            <dt>商品条码：</dt>
+                            <dd> <a href="http://www.anccnet.com/goods.aspx?base_id=F25F56A9F703ED748A935F829B24117E2385FC625D1C2F9C8487C26510EE690AEC63A5AB6437D87F"
+                                                                        target="_blank"> 06955608310133</a></dd>
+                            <dt>名称：</dt>
+                            <dd> 易拉罐酸梅汽水</dd>
+                            <dt>规格型号：</dt>
+                            <dd> 330ml</dd>
+                            <dt>描述：</dt>
+                            <dd> ,</dd>
+                          </dl>
+                          <br clear="all" />
+                        </div>
+                      </li>
+                    
+                      <li>
+                        <div class="result">
+                          <p class="p-img" align="center"><a id="repList_ctl10_herl" target="_blank"> <img src="/img/empty_90-90.8.png" id="repList_ctl10_productimg" width="90" height="90" onload="limitImgSize(this, 90, 90,true);" /></a></p>
+                          <dl class="p-supplier">
+                            <dt>商标：</dt>
+                            <dd>北冰洋</dd>
+                            <dt>发布厂家：</dt>
+                            <dd>
+                              <a id="repList_ctl10_firmLink" href="http://www.anccnet.com/info_search/factory/Detail.aspx?id=F25F56A9F703ED743E7D6D29C7798D5097F306C14607F8E0588A5D6BDD3F01DD&amp;temp=0" target="_blank" style="text-decoration:none;">北冰洋(北京)饮料食品有限公司</a>
+                            </dd>
+                          </dl>
+                          <dl class="p-info">
+                            <dt>商品条码：</dt>
+                            <dd> <a href="http://www.anccnet.com/goods.aspx?base_id=F25F56A9F703ED74B9E1B7A191E20E12DBB904DDE4425ED7EDD118A73C472C50E838F8311B931F48"
+                                                                        target="_blank"> 06955608310140</a></dd>
+                            <dt>名称：</dt>
+                            <dd> 易拉罐酸梅汽水</dd>
+                            <dt>规格型号：</dt>
+                            <dd> 330ml*6</dd>
+                            <dt>描述：</dt>
+                            <dd> ,</dd>
+                          </dl>
+                          <br clear="all" />
+                        </div>
+                      </li>
+                    
+                      <li>
+                        <div class="result">
+                          <p class="p-img" align="center"><a id="repList_ctl11_herl" target="_blank"> <img src="/img/empty_90-90.8.png" id="repList_ctl11_productimg" width="90" height="90" onload="limitImgSize(this, 90, 90,true);" /></a></p>
+                          <dl class="p-supplier">
+                            <dt>商标：</dt>
+                            <dd>北冰洋</dd>
+                            <dt>发布厂家：</dt>
+                            <dd>
+                              <a id="repList_ctl11_firmLink" href="http://www.anccnet.com/info_search/factory/Detail.aspx?id=F25F56A9F703ED743E7D6D29C7798D5097F306C14607F8E0588A5D6BDD3F01DD&amp;temp=0" target="_blank" style="text-decoration:none;">北冰洋(北京)饮料食品有限公司</a>
+                            </dd>
+                          </dl>
+                          <dl class="p-info">
+                            <dt>商品条码：</dt>
+                            <dd> <a href="http://www.anccnet.com/goods.aspx?base_id=F25F56A9F703ED749893D86A860167664A435E2E2E12725EA13B740DD0EEFEB8F922C9C5FD3FDFFC"
+                                                                        target="_blank"> 06955608310157</a></dd>
+                            <dt>名称：</dt>
+                            <dd> 易拉罐酸梅汽水</dd>
+                            <dt>规格型号：</dt>
+                            <dd> 330ml*6*4</dd>
+                            <dt>描述：</dt>
+                            <dd> ,</dd>
+                          </dl>
+                          <br clear="all" />
+                        </div>
+                      </li>
+                    
+                      <li>
+                        <div class="result">
+                          <p class="p-img" align="center"><a id="repList_ctl12_herl" target="_blank"> <img src="/img/empty_90-90.8.png" id="repList_ctl12_productimg" width="90" height="90" onload="limitImgSize(this, 90, 90,true);" /></a></p>
+                          <dl class="p-supplier">
+                            <dt>商标：</dt>
+                            <dd>北冰洋</dd>
+                            <dt>发布厂家：</dt>
+                            <dd>
+                              <a id="repList_ctl12_firmLink" href="http://www.anccnet.com/info_search/factory/Detail.aspx?id=F25F56A9F703ED743E7D6D29C7798D5097F306C14607F8E0588A5D6BDD3F01DD&amp;temp=0" target="_blank" style="text-decoration:none;">北冰洋(北京)饮料食品有限公司</a>
+                            </dd>
+                          </dl>
+                          <dl class="p-info">
+                            <dt>商品条码：</dt>
+                            <dd> <a href="http://www.anccnet.com/goods.aspx?base_id=F25F56A9F703ED7412E8BFA38C3AD2658AEEAF4F6FEA66DAB59E633412CF9F1D6B27D888A525A091"
+                                                                        target="_blank"> 06955608310034</a></dd>
+                            <dt>名称：</dt>
+                            <dd> 苏打水12瓶装</dd>
+                            <dt>规格型号：</dt>
+                            <dd> 248毫升*12瓶</dd>
+                            <dt>描述：</dt>
+                            <dd> ,</dd>
+                          </dl>
+                          <br clear="all" />
+                        </div>
+                      </li>
+                    
+                      <li>
+                        <div class="result">
+                          <p class="p-img" align="center"><a id="repList_ctl13_herl" target="_blank"> <img src="/img/empty_90-90.8.png" id="repList_ctl13_productimg" width="90" height="90" onload="limitImgSize(this, 90, 90,true);" /></a></p>
+                          <dl class="p-supplier">
+                            <dt>商标：</dt>
+                            <dd>北冰洋</dd>
+                            <dt>发布厂家：</dt>
+                            <dd>
+                              <a id="repList_ctl13_firmLink" href="http://www.anccnet.com/info_search/factory/Detail.aspx?id=F25F56A9F703ED743E7D6D29C7798D5097F306C14607F8E0588A5D6BDD3F01DD&amp;temp=0" target="_blank" style="text-decoration:none;">北冰洋(北京)饮料食品有限公司</a>
+                            </dd>
+                          </dl>
+                          <dl class="p-info">
+                            <dt>商品条码：</dt>
+                            <dd> <a href="http://www.anccnet.com/goods.aspx?base_id=F25F56A9F703ED749208C788549BF19941AF9B4E80F2503D3DB562CB6AF2E0F819F3124BA7C4E15A"
+                                                                        target="_blank"> 06955608310027</a></dd>
+                            <dt>名称：</dt>
+                            <dd> 特制橙汁汽水12瓶装</dd>
+                            <dt>规格型号：</dt>
+                            <dd> 248毫升*12瓶</dd>
+                            <dt>描述：</dt>
+                            <dd> ,</dd>
+                          </dl>
+                          <br clear="all" />
+                        </div>
+                      </li>
+                    
+                      <li>
+                        <div class="result">
+                          <p class="p-img" align="center"><a id="repList_ctl14_herl" target="_blank"> <img src="/img/empty_90-90.8.png" id="repList_ctl14_productimg" width="90" height="90" onload="limitImgSize(this, 90, 90,true);" /></a></p>
+                          <dl class="p-supplier">
+                            <dt>商标：</dt>
+                            <dd>北冰洋</dd>
+                            <dt>发布厂家：</dt>
+                            <dd>
+                              <a id="repList_ctl14_firmLink" href="http://www.anccnet.com/info_search/factory/Detail.aspx?id=F25F56A9F703ED743E7D6D29C7798D5097F306C14607F8E0588A5D6BDD3F01DD&amp;temp=0" target="_blank" style="text-decoration:none;">北冰洋(北京)饮料食品有限公司</a>
+                            </dd>
+                          </dl>
+                          <dl class="p-info">
+                            <dt>商品条码：</dt>
+                            <dd> <a href="http://www.anccnet.com/goods.aspx?base_id=F25F56A9F703ED7403E3F13EE0C11F1A70F04B3E0A9058F7B94F550D6FEE3B8E0BAD119C2A7FDD0A"
+                                                                        target="_blank"> 06955608310010</a></dd>
+                            <dt>名称：</dt>
+                            <dd> 特制桔汁汽水12瓶装</dd>
+                            <dt>规格型号：</dt>
+                            <dd> 248毫升*12瓶</dd>
+                            <dt>描述：</dt>
+                            <dd> ,</dd>
+                          </dl>
+                          <br clear="all" />
+                        </div>
+                      </li>
+                    
+                </ol>
+              </div>
+            </div>
+            <div id="myPager" style="border-width:0px;">
+	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td valign="bottom" align="left" nowrap="true" style="width:;">总记录数：<font color="blue"><b>73</b></font> 总页数：<font color="blue"><b>5</b></font> 当前页：<font color="red"><b>1</b></font></td><td valign="bottom" align="notset" nowrap="true" class=""><a disabled="true"><font face="webdings">9</font></a><span style="width:5px;"></span><a disabled="true"><font face="webdings">3</font></a><span style="width:5px;"></span><font style="font-weight:Bold;color:red;">1</font><span style="width:5px;"></span><a title="转到第2页" href="/searchResult2.aspx?rPage=2&amp;keyword=北冰洋(北京)饮料食品有限公司">2</a><span style="width:5px;"></span><a title="转到第3页" href="/searchResult2.aspx?rPage=3&amp;keyword=北冰洋(北京)饮料食品有限公司">3</a><span style="width:5px;"></span><a title="转到第4页" href="/searchResult2.aspx?rPage=4&amp;keyword=北冰洋(北京)饮料食品有限公司">4</a><span style="width:5px;"></span><a title="转到第5页" href="/searchResult2.aspx?rPage=5&amp;keyword=北冰洋(北京)饮料食品有限公司">5</a><span style="width:5px;"></span><a title="转到第2页" href="/searchResult2.aspx?rPage=2&amp;keyword=北冰洋(北京)饮料食品有限公司"><font face="webdings">4</font></a><span style="width:5px;"></span><a title="转到第5页" href="/searchResult2.aspx?rPage=5&amp;keyword=北冰洋(北京)饮料食品有限公司"><font face="webdings">:</font></a><span style="width:5px;"></span></td>
+		</tr>
+	</table>
+</div>
+          </div>
+          
+        </div>
+        
+
+<style type ="text/css" >
+    /** 页脚 */
+.footer{
+	padding:1px 1px 20px;
+	border-top:1px solid #CADAE2;
+	zoom:1;
+	text-align:center;
+	line-height:normal;
+	font-size :13px
+}
+.footer p{ margin:14px auto;}
+.intro{ padding-top:20px;height:25px;background:url(http://www.anccnet.com/img/web_header1.png) 0 -130px repeat-x;}
+.introList{
+	display:inline-block;
+	display:-moz-inline-box;
+	+display:inline;
+	+zoom:1;
+	overflow:hidden;
+	padding-left:0;
+}
+.intro li{
+	display:inline;
+	float:left;
+	margin-left:-1px;
+	padding:0 1.8em;
+	border-left:1px solid #000;
+}
+.copyright em{ font:14px Georgia, "Times New Roman", Times, serif}
+.phone{ display:none;}
+.icp{}
+.email{ display:none;}
+</style>
+<script type ="text/javascript" >
+function h(obj,url){obj.style.behavior='url(#default#homepage)';obj.setHomePage(url);}
+</script>
+<div class="footer">
+    <div class="intro">
+      <ul class="introList">
+        <li><a href="http://www.anccnet.com/aboutGds.aspx">关于平台</a></li>
+        <li><a href="http://www.anccnet.com/highService.aspx">高端服务</a></li>
+        <li><a href="http://www.anccnet.com/aboutANCC.aspx">中国物品编码中心</a></li>
+        <li><a href="http://www.anccnet.com/legal_notices.aspx">法律声明</a></li>
+        <li><a href="http://www.anccnet.com/service_iterm.aspx">服务条款</a></li>
+        <li><a href="#" onclick="h(this,'http://www.gds.org.cn/')">设为首页</a></li>
+      </ul>
+    </div>
+    <p class="copyright"><em>Copyright &copy; 2008 gds.org.cn All rights reserved</em> 中国物品编码中心 版权所有</p>
+    <p class="icp"><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备05012621号</a></p>
+  </div>
+      </div>
+      </div>
+      <script type="text/javascript" language="javascript">
+function gdsBtn_onclick() {
+//var obj =document.getElementById("keyword");
+//if(!/\S/.test(obj.value)) //1009改过
+//{return;
+//}
+//window.location.href = "searchResult.aspx?keyword=" + escape(obj.value);
+////debugger
+}
+        </script>
+    </form>
+</body>
+    <script type="text/javascript">
+
+
+// 搜索区块表单元素
+//var gdsSearch = $("#gdsSearch")[0], gdsElems = $($.byTag(gdsSearch, "input"))
+// 设置搜索区块焦点标志
+//gdsElems.focus(function(){ gdsSearch.focusStamp = true;}).blur(function(){ gdsSearch.focusStamp = false;});
+// 提交事件判断
+//document.forms["form1"].onsubmit=function(){
+//	if(gdsSearch.focusStamp){
+//		gdsBtn_onclick();
+//		return false;
+//	}
+	
+//}
+</script>
+    <script type="text/javascript">
+
+///$('#keyword').inputPrompts('input-prompt-text');
+        $('#gdsBtn').click(submitCheck);
+
+        function submitCheck(e) {
+            e.preventDefault();
+            var keyword = $.byId('keyword');
+            var value = keyword.value.trim();
+            var search_subjoin;
+            var sValue;
+            if (value && value !== keyword.getAttribute('placeholder')) {
+                $('<a href="searchResult2.aspx?keyword=' + value + '"></a>').appendTo('body').on('click').remove(true, true);
+
+                //				$.byId('CheckCodeBox').style.display = '';
+                //				search_subjoin = $.byId('search_subjoin');
+                //				sValue = search_subjoin.value.trim();
+                //				if(  sValue && (!search_subjoin.getAttribute('data-async-valid') || $(search_subjoin).hasClass($.Form.asyncValidClass)) ){
+                //					window.location.href = 
+                //						"/searchResult2.aspx?keyword=" + value
+                //						+ '&search_subjoin=' + sValue;
+                //				}
+            }
+        };
+
+</script>
+</html>

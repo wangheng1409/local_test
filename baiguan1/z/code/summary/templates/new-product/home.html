@@ -1,0 +1,275 @@
+{% load staticfiles %}
+{% load humanize %}
+<!DOCTYPE html>
+<html>
+<header>
+<meta charset="utf-8">
+<title>超盟 - 新品测试DEMO</title>
+<link href="http://cdn.bootcss.com/semantic-ui/2.1.4/semantic.min.css" rel="stylesheet" type="text/css" >
+<style>
+#msg-container{
+    width: 900px;
+    margin: 20px auto 0px;
+}
+#daily-chart{
+    width:900px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+#monthly-chart{
+    width:900px;
+    height: 250px;
+    margin: 0 auto;
+}
+
+#detail-container{
+    width:900px;
+    margin: 20px auto 40px;
+}
+</style>
+</header>
+<body>
+{% if error %}
+<div>{{error }}</div>
+{% endif %}
+
+<div id="msg-container">
+<h3>
+北京地區<br>
+超盟从 {{coverage|intcomma}} 个交易里找到您的结果: </h3>
+</div>
+
+<center><h4>6月份数据</h4></center>
+<div id="daily-chart"></div>
+
+<center><h4>月销售额增长</h4></center>
+<div id="monthly-chart"></div>
+
+<center><h4>门店销售明细</h4></center>
+<div id="detail-container">
+
+
+<div class="ui tabular menu">
+    {% for date, stores in detail_data.items %}
+    <div class="item {% if forloop.last %}active{% endif %}" data-tab="tab-{{date}}">{{date}}</div>
+    {% endfor %}
+</div>
+
+{% for date, stores in detail_data.items %}
+<div class="ui tab {% if forloop.last %}active{% endif %}" data-tab="tab-{{date}}">
+<table class="ui celled striped table">
+  <thead>
+        <tr>
+            <th rowspan="3"></th>
+            {% for item in sku %}
+            <th colspan="2" class="center aligned">{{item}}</th>
+            {% endfor %}
+        </tr>
+
+        <tr>
+            {% for item in sku %}
+            <th colspan="2" class="center aligned">銷售額</th>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for item in sku %}
+            <th>RMB</th>
+            <th>增長%</th>
+            {% endfor %}
+        </tr>
+    </thead>
+
+  <tbody>
+    {% for store, items in stores.items %}
+    <tr>
+        <td>{{store}}</td>
+        {% for item, t in items.items %}
+            <td>{{t.sales}}</td>
+            <td>{{t.growth}}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endfor %}
+
+</div>
+
+<script src="{% static 'lib/echarts.common.min.js' %}"></script>
+<!-- <script src="{% static 'lib/vintage.js' %}"></script> -->
+<!-- <script src="{% static 'lib/infographic.js' %}"></script> -->
+
+<script src="{% static 'lib/jquery-3.0.0.min.js' %}"></script>
+<script src="{% static 'lib/semantic.min.js' %}"></script>
+
+<script>
+
+
+if (!String.prototype.format) {
+  String.prototype.format = function() {
+    var args = arguments;
+    return this.replace(/{(\d+)}/g, function(match, number) {
+      return typeof args[number] != 'undefined'
+        ? args[number]
+        : match
+      ;
+    });
+  };
+}
+
+
+$(function(){
+
+var dailyData = JSON.parse('{{daily|safe}}');
+var monthlyData = JSON.parse('{{monthly|safe}}');
+
+function getSeriesData(data, point_type, data_type){
+    out = [];
+    for(var item in data){
+        out.push({
+            name: item,
+            type: point_type,
+            // smooth: true,
+            // label: {
+            //     normal: {
+            //         show: true,
+            //         position: 'top'
+            //     }
+            // },
+            data: data[item][data_type],
+        })
+    }
+    return out;
+}
+
+var dailyChart = echarts.init(document.getElementById('daily-chart'));
+dailyChart.setOption({
+    title: {
+        text: ''
+    },
+    legend: {
+        x: 'left',
+        y: 10,
+        left: 20,
+        data: Object.getOwnPropertyNames(dailyData)
+    },
+    xAxis: {
+        data: {{days|safe}},
+        axisLabel: {
+            interval: 0,
+            rotate: '65'
+        }
+    },
+    yAxis: {
+        name: '(RMB)',
+    },
+    tooltip: {
+        formatter:function(t){
+            var date;
+            var itemStats = '';
+            for(var i=0; i < t.length; i++){
+                if(date == undefined)
+                    date = t[i].name
+
+                itemStats += '<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:{0}"></span>{1}: ¥{2} ({3})'.format(t[i].color, t[i].seriesName, t[i].value, dailyData[t[i].seriesName]['growth'][t[i].dataIndex] + '%');
+
+            }
+
+            return '{0}{1}'.format(date, itemStats);
+        },
+        backgroundColor: 'rgba(255,255,255, 1)',
+        textStyle: {
+            color: '#333'
+        },
+        borderColor: '#ccc',
+        borderWidth: 1,
+        trigger: 'axis',
+        axisPointer: {
+            type: 'line'
+        }
+    },
+    toolbox: {
+        show: true,
+        feature: {
+            saveAsImage: {show: true},
+            dataView: {show:true}
+        }
+    },
+    grid: {
+        left: 2,
+        right: 10,
+        containLabel: true
+    },
+    series: getSeriesData(dailyData, 'line', 'sales')
+});
+
+
+var monthlyChart = echarts.init(document.getElementById('monthly-chart'));
+monthlyChart.setOption({
+    title: {
+        text: ''
+    },
+    legend: {
+        x: 'left',
+        y: 10,
+        left: 20,
+        data: Object.getOwnPropertyNames(monthlyData)
+    },
+    xAxis: {
+        data: {{months|safe}},
+        // show: false,
+    },
+    yAxis: {
+        // show: true,
+        // interval: 50,
+        // min: -100,
+        // max: 100,
+        name: '(%)'
+    },
+    grid: {
+        left: 2,
+        right: 10,
+        bottom:10,
+        containLabel: true
+    },
+    tooltip:{
+        trigger: 'axis',
+        axisPointer: {
+            type: 'line'
+        },
+        formatter:function(t){
+            var date;
+            var itemStats = '';
+            for(var i=0; i < t.length; i++){
+                if(date == undefined)
+                    date = t[i].name
+
+                itemStats += '<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:{0}"></span>{1}: ¥{2} ({3})'.format(t[i].color, t[i].seriesName, monthlyData[t[i].seriesName]['sales'][t[i].dataIndex], monthlyData[t[i].seriesName]['growth'][t[i].dataIndex] + '%');
+
+            }
+
+            return '{0}{1}'.format(date, itemStats);
+        },
+    },
+    toolbox: {
+        show: true,
+        feature: {
+            saveAsImage: {show: true},
+            dataView: {show:true}
+        }
+    },
+    series: getSeriesData(monthlyData, 'line', 'growth')
+});
+
+});
+
+$('.tabular.menu .item').tab();
+
+
+</script>
+
+
+</body>
+</html>

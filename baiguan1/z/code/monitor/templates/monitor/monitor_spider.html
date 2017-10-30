@@ -1,0 +1,95 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>爬虫监控</title>
+<!-- fix the confliction between jquery-sparkline and semantic-ui -->
+</head>
+<body>
+
+
+<form method='GET' style="width: 313px;float: right;">
+    <div class="ui icon input">
+        <input type='text' placeholder="Search tag..." name='query_tag'>
+        <button class="ui button">搜索</button>
+    </div>
+</form>
+
+<div id='spark-x-values' values='{{x_values|join:","}}'></div>
+<div class='ui sticky' id='table-titles'>
+    <div class='ui labels'>
+        <span class='ui label red'>tag</span>
+        <span class='ui label green'>source</span>
+        <span class='ui label blue'>HD</span>
+        <span class='ui label yellow'>HB</span>
+        <span class='ui label orange'>HN</span>
+    </div>
+</div>
+<div class="container">
+    <table class='ui table comptact' id="table-contents">
+    <tr>
+        <td style="text-align:center">tag</td>
+        <td style="text-align:center">source</td>
+        <td style="text-align:center">HD</td>
+        <td style="text-align:center">HB</td>
+        <td style="text-align:center">HN</td>
+    </tr>
+    {% for r in results %}
+    <tr>
+        <td style="text-align:center" rowspan="3">{{r.tag}}</td>
+        <td style="text-align:center">tmall</td>
+        <td style="text-align:center"><span class='sparklines' values='{{r.data.tmall_HD|join:","}}'></span></td>
+        <td style="text-align:center"><span class='sparklines' values='{{r.data.tmall_HB|join:","}}'></span></td>
+        <td style="text-align:center"><span class='sparklines' values='{{r.data.tmall_HN|join:","}}'></span></td>
+    </tr>
+    <tr>
+        <td style="text-align:center">feiniu</td>
+        <td style="text-align:center"><span class='sparklines' values='{{r.data.feiniu_HD|join:","}}'></span></td>
+        <td style="text-align:center"><span class='sparklines' values='{{r.data.feiniu_HB|join:","}}'></span></td>
+        <td style="text-align:center"><span class='sparklines' values='{{r.data.feiniu_HN|join:","}}'></span></td>
+    </tr>
+    <tr>
+        <td style="text-align:center">yhd</td>
+        <td style="text-align:center"><span class='sparklines' values='{{r.data.yhd_HD|join:","}}'></span></td>
+        <td style="text-align:center"><span class='sparklines' values='{{r.data.yhd_HB|join:","}}'></span></td>
+        <td style="text-align:center"><span class='sparklines' values='{{r.data.yhd_HN|join:","}}'></span></td>
+    </tr>
+    {% endfor %}
+    </table>
+</div>
+<link href="//cdn.bootcss.com/semantic-ui/2.1.4/semantic.min.css" rel="stylesheet" type="text/css" >
+<link href="//cdn.bootcss.com/jqueryui/1.12.0/jquery-ui.min.css" rel="stylesheet">
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/jqueryui/1.12.0/jquery-ui.min.js"></script>
+<link href="//cdn.bootcss.com/semantic-ui/2.2.4/components/sticky.min.css" rel="stylesheet">
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/components/sticky.js"></script>
+<script src="{% static "vendor/bower-jquery-sparkline/dist/jquery.sparkline.retina.js" %}"></script>
+<script src="{% static "js/monitor/monitor_spider.js" %}"></script>
+<script>
+$(function(){
+    $('.ui.sticky')
+      .sticky({
+        context: '#table-contents'
+      })
+    ;
+});
+</script>
+
+{% if results.has_previous %}
+    <a class='paginator' title='上一页' href='?page_num={{ results.previous_page_number }}&query_tag={{query_tag}}'><span>上一页&lt;&lt;</span></a>
+{% endif %}
+{% for page_num in results.paginator.page_range %}
+    {% if page_num == results.number %}
+        <span>当前页:{{ page_num }}</span>
+    {% else %}
+        <a class='paginator' href='?page_num={{ page_num }}&query_tag={{query_tag}}' title='{{ page_num }}'><span>{{ page_num }}</span></a>
+    {% endif %}
+{% endfor %}
+{% if results.has_next %}
+    <a class='paginator' title='下一页' href='?page_num={{ results.next_page_number }}&query_tag={{query_tag}}'><span>下一页&gt;&gt;</span></a>
+{% endif %}
+
+</body>
+</html>

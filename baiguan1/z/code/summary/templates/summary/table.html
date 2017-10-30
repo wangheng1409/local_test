@@ -1,0 +1,62 @@
+{% load staticfiles %}
+<html>
+<head>
+<!-- <link href="{% static 'summary/simple.css' %}" rel="stylesheet"> -->
+<link href="http://cdn.bootcss.com/semantic-ui/2.1.4/semantic.min.css" rel="stylesheet" type="text/css" >
+<title>超盟 - 统计 ／ {{date}}</title>
+<style>
+thead tr{
+    background-color: #eee;
+}
+th.sorted.ascending:after {
+    content: "  \2191";
+}
+
+th.sorted.descending:after {
+    content: " \2193";
+}
+
+.container{
+    width: 1200px;
+    margin: 0 auto;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h2>{{date}}</h2>
+
+<div class="ui four">
+{% include 'summary/filters.html' %}
+
+<table class="ui celled table sortable">
+    <thead>
+        <tr>
+        {% for h in header %}
+        <th>{{h}}</th>
+        {% endfor header %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in content %}
+            <tr>
+            {% for c in row %}
+                <td data-sort-value="{{c|default_if_none:'-1'}}">{{c|default_if_none:"-"}}</td>
+            {% endfor %}
+            </tr>
+        {% endfor content %}
+    </tbody>
+</table>
+</div>
+<script src="{% static 'lib/jquery-3.0.0.min.js' %}"></script>
+<!-- <script src="//cdn.bootcss.com/jquery/1.10.1/jquery.min.js"></script> -->
+<script src="{% static 'lib/semantic.min.js' %}"></script>
+<script src="{% static 'lib/tablesort.js' %}"></script>
+<script>
+$(function(){
+    $('table').tablesort();
+    $('.ui.accordion').accordion();
+});
+</script>
+</body>
+</html>

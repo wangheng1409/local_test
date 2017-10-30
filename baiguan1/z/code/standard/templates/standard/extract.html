@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Extract 測試工具</title>
+<link href="http://cdn.bootcss.com/semantic-ui/2.1.4/semantic.min.css" rel="stylesheet" type="text/css" >
+<style>
+.container{
+    margin: 20px auto;
+    width:800px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    {% if candidates_size %}
+      <h3>相關商品數: {{candidates_size}}</h3>
+    {% endif %}
+    <form action="/extract_test" method="post">
+        {% csrf_token %}
+        <div class="ui icon input fluid">
+            <input id="id_item_name" maxlength="255" name="item_name" type="text" value="{{form.item_name.value|default_if_none:'芬达芒果味汽水600毫'}}">
+            <i class="search icon"></i>
+        </div>
+    </form>
+    <table class="ui compact celled table ">
+      <thead class="full-width">
+        <tr>
+            <th colspan="5">
+                商品名: {{process_item.name}}<br>
+                規格: {{process_item.model}}<br>
+                口味: {{process_item.flavor}}<br>
+                关键词: {{process_item.keywords|join:", "}}<br>
+            </th>
+        </tr>
+        <tr>
+          <th>得分</th>
+          <th>ID</th>
+          <th>标品名</th>
+          <th>被匹配次数</th>
+          <th>关键词</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for id, r in result.items %}
+            <tr>
+                <td>{{r.score}}</td>
+                <td>{{id}}</td>
+                <td>{{r.name}}</td>
+                <td>{{r.num_matches}}</td>
+                <td>{{r.keywords|join:", "}}</td>
+            </tr>
+        {% endfor %}
+      </tbody>
+    </tbody>
+    </table>
+</div>
+
+</body>
+</html>

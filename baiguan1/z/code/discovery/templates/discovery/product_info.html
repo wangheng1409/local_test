@@ -1,0 +1,84 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>超盟 - 商品详情</title>
+    <link href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/discovery/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/discovery/products_list.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/discovery/product_info.css' %}">
+    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/echarts/3.2.3/echarts.min.js"></script>
+</head>
+<body>
+    <!-- nav -->
+    <div class="nav-wrapper">
+        <div class="nav">
+            <div class="nav-title">
+                <a href="">超盟数据(新品)</a>
+            </div>
+            <ul class="nav-list">
+                <li>
+                    <a href="discovery">发现新品</a>
+                </li>
+                <li>
+                    <a href="collect">收藏</a>
+                </li>
+            </ul>
+            <div class="nav-webmaster">
+                <a href="###">帐号</a>
+            </div>
+        </div>
+    </div>
+    <!-- content -->
+    <div class="con-wrapper">
+        <div class="con-product con-info">
+            <!-- good info -->
+            <div class="text-info">
+                <img src="" alt="" id="image_url">
+                <div class="definite-info">
+                    <h3 id="product_name"></h3>
+                    <div class="price-info">
+                        <ul class="price-list">
+                            <li>
+                                <b>售价 : </b>
+                                <span class="special-color" id="product_price"></span>
+                            </li>
+                            <li>
+                                <b>商品得分 : </b>
+                                <span class="special-color" id="product_score">5分</span>
+                            </li>
+                        </ul>
+                        <ul class="store-list" id="store-list">
+                            <li name="tmall">
+                                <a href="{{ tmall }}">天猫商城</a>
+                            </li>
+                            <li name="yhd">
+                                <a href="{{ yhd }}">1号店商城</a>
+                            </li>
+                            <li name="feiniu">
+                                <a href="{{ feiniu }}">飞牛商城</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 收藏 -->
+                    <button class="ui red button" id="collect_btn" name="{{ skuid }}">
+                        <i class="empty heart icon"></i>
+                        <span>加入收藏</span>
+                    </button>
+                </div>
+            </div>
+            <div class="curve-info">
+                <div class="curve-title" id="product_grand" name="{{ grand }}">
+                    <button class="ui right floated button" name="monthly">最近一月</button>
+                    <button class="ui right floated button" name="weekly">最近一周</button>
+                </div>
+                <!-- 曲线图 -->
+                <div class="curve" id="main"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="{% static 'js/discovery/product_info.js' %}"></script>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> spider monitor</title>
+    <style>
+        .a3{
+            position: relative;
+            width: 428px;
+            height: 30px;
+            border-bottom: 1px solid #FF2F00;
+        }
+        .a4{
+            height: 20px;
+            width: 400px;
+            margin:5px;
+        }
+        .a5{
+            margin:5px;
+        }
+        .line-chart {
+            margin: 24px ;
+            width: 920px;
+            height: 274px;
+        }
+        .curve{
+            width: 920px;
+            height: 274px;
+        }
+        .hide{
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/color.css">
+    <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/demo/demo.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
+    <script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <script src="{{url_for('static',filename='js/echarts.js')}}"></script>
+</head>
+<body>
+    <div class="a3"><p>请选择数据来源</p></div>
+    <select class="a4" id="source" >
+        <option>sj</option>
+        <option>ky</option>
+        <option>edu</option>
+    </select>
+     <div class="a3"><p>请选择需要查询的城市</p></div>
+    <select class="a4" id="city">
+        <option  >全部</option>
+        <option  >北京市</option>
+        <option  >沈阳市</option>
+        <option  >石家庄市</option>
+        <option  >太原市</option>
+        <option  >济南市</option>
+        <option  >开封市</option>
+        <option  >南京市</option>
+        <option  >合肥市</option>
+        <option  >南通市</option>
+        <option  >上海市</option>
+        <option  >成都市</option>
+        <option  >杭州市</option>
+        <option  >金华市</option>
+        <option  >南昌市</option>
+        <option  >长沙市</option>
+        <option  >福州市</option>
+        <option  >泉州市</option>
+        <option  >广州市</option>
+        <option  >惠州市</option>
+        <option  >深圳市</option>
+        <option  >宜昌市</option>
+    </select>
+
+    <div class="a3" style="width=200px;"><p>请选择查询起始日期</p></div>
+    <div id="cc" class="easyui-calendar a5" style="width:180px;height:180px;"></div>
+
+    <input type="button" value='开始查询' id="search" class="a5" style="width:180px;height:30px;border:1px solid #FF2F00;">
+
+    <div class="a3" style="width=200px;"><p>结果展示区</p></div>
+    <div class="line-chart">
+        <!-- 折线图 -->
+        <div class="curve" id="main">折线图</div>
+    </div>
+
+
+    <script type="text/javascript" src="{{url_for('static',filename='js/line_chart.js')}}"></script>
+</body>
+</html>

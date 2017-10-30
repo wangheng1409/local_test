@@ -1,0 +1,397 @@
+{% load staticfiles %}
+{% load humanize %}
+<!DOCTYPE html>
+<html>
+<header>
+<meta charset="utf-8">
+<title>新品监测 - 超盟</title>
+<link href="http://cdn.bootcss.com/semantic-ui/2.1.4/semantic.min.css" rel="stylesheet" type="text/css" >
+<style>
+body{
+    background-color: rgb(14, 30, 40);
+}
+
+#msg-container{
+    width: 900px;
+    margin: 20px auto 0px;
+}
+.cm-chart{
+    width:900px;
+    height: 300px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 0px;
+}
+
+#monthly-chart{
+    width:900px;
+    height: 250px;
+    margin: 0 auto;
+}
+
+#detail-container{
+    width:900px;
+    margin: 20px auto 40px;
+}
+
+thead tr{
+    background-color: #eee;
+}
+th.sorted.ascending:after {
+    content: "  \2191";
+}
+
+th.sorted.descending:after {
+    content: " \2193";
+}
+
+#container{
+    margin: 10px auto;
+    overflow: hidden;
+    background-color: white;
+    padding: 10px;
+    width: 920px;
+}
+
+.section{
+/*    background-color: white;
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;*/
+    margin-bottom: 10px;
+}
+
+</style>
+</header>
+<body>
+
+<div id="container">
+
+<div class="ui secondary pointing menu">
+    {% for p in my_projects %}
+    <a href='?p={{p.id}}' class='item {% if p.id == cur_project.id %}active{% endif %}'>{{p.name}}</a>
+    {% endfor %}
+</div>
+
+<center>
+<div class="ui secondary menu">
+    <a class="icon item" href="{% url 'new-products-monitoring' date=pre_month %}?p={{cur_project.id}}">
+      <i class="left chevron icon"></i>
+    </a>
+    <a class="item">{{cur_month}}</a>
+    <a class="icon item" href="{% url 'new-products-monitoring' date=next_month %}?p={{cur_project.id}}">
+      <i class="right chevron icon"></i>
+    </a>
+</div>
+</center>
+
+{% if error %}
+<div>{{error }}</div>
+{% endif %}
+
+<!-- <div id="msg-container">
+<h3>
+北京地區<br>
+超盟从 {{coverage|intcomma}} 个交易里找到您的结果: </h3>
+</div> -->
+
+<!-- <div class="ui statistics">
+  <div class="statistic">
+    <div class="value">
+      22
+    </div>
+    <div class="label">
+      Faves
+    </div>
+  </div>
+  <div class="statistic">
+    <div class="value">
+      31,200
+    </div>
+    <div class="label">
+      Views
+    </div>
+  </div>
+  <div class="statistic">
+    <div class="value">
+      22
+    </div>
+    <div class="label">
+      Members
+    </div>
+  </div>
+</div> -->
+
+<div class="section">
+    <div class="ui secondary menu">
+        <div class="right menu">
+            <a class="item active" data-tab="sales-chart">销售額趋势</a>
+            <a class="item" data-tab="growths-chart">增长率趋势</a>
+        </div>
+    </div>
+
+    <div class="ui active tab" data-tab="sales-chart">
+        <div id="daily-sales-chart" class="cm-chart"></div>
+    </div>
+    <div class="ui tab" data-tab="growths-chart">
+        <div id="daily-growth-chart" class="cm-chart"></div>
+    </div>
+</div>
+
+<div class="section">
+    <div id="tags-chart" class="cm-chart"></div>
+</div>
+
+<div class="section">
+    <center><h4>门店销售明细</h4></center>
+    <div id="detail-container">
+        <table class="ui celled striped table attached">
+            <thead>
+                <tr><th></th>
+                {% for store, items in stores_table.items|slice:":1" %}
+                    {% for item in items.p %}
+                    <th>{{item}}</th>
+                    {% endfor %}
+                {% endfor %}
+                </tr>
+            </thead>
+
+            <tbody>
+            {% for store, items in stores_table.items %}
+            <tr>
+                <td data-store-id="{{items.id}}">{{store}}</td>
+                {% for item, v in items.p.items %}
+                    <td>{{v.sales|safe}} {{v.growth|default_if_none:""|safe}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</div>
+
+<script src="{% static 'lib/echarts.common.min.js' %}"></script>
+<!-- <script src="{% static 'lib/vintage.js' %}"></script> -->
+<!-- <script src="{% static 'lib/infographic.js' %}"></script> -->
+<script src="{% static 'lib/jquery-3.0.0.min.js' %}"></script>
+<script src="{% static 'lib/tablesort.js' %}"></script>
+<script src="{% static 'lib/semantic.min.js' %}"></script>
+
+<script>
+
+if (!String.prototype.format) {
+  String.prototype.format = function() {
+    var args = arguments;
+    return this.replace(/{(\d+)}/g, function(match, number) {
+      return typeof args[number] != 'undefined'
+        ? args[number]
+        : match
+      ;
+    });
+  };
+}
+
+
+$(function(){
+$('.ui.menu .item').tab();
+$('table').tablesort();
+
+var dailyData = JSON.parse('{{daily|safe}}');
+var tagsData = JSON.parse('{{tags|safe}}');
+
+function getSeriesData(data, point_type, data_type){
+    out = [];
+    for(var item in data){
+        out.push({
+            name: data[item]['item_name'],
+            type: point_type,
+            // smooth: true,
+            // label: {
+            //     normal: {
+            //         show: true,
+            //         position: 'top'
+            //     }
+            // },
+            data: data[item][data_type],
+        })
+    }
+    return out;
+}
+
+function getLegendName(data){
+    out = [];
+    for(var item in data){
+        out.push(data[item]['item_name']);
+    }
+    return out;
+}
+
+var salesChart = echarts.init(document.getElementById('daily-sales-chart'));
+salesChart.setOption({
+    title: {
+        // text: '{{date}} 销售額趋势',
+        // textAlign: 'center'
+    },
+    legend: {
+        // x: 'center',
+        // y: 10,
+        // left: 20,
+        data: getLegendName(dailyData)
+    },
+    xAxis: {
+        data: {{x_axis|safe}},
+        axisLabel: {
+            interval: 0,
+            rotate: '65'
+        }
+    },
+    yAxis: {
+        name: '(RMB)',
+    },
+    tooltip: {
+        // backgroundColor: 'rgba(255,255,255, 1)',
+        // textStyle: {
+        //     color: '#333'
+        // },
+        // borderColor: '#ccc',
+        // borderWidth: 1,
+        trigger: 'axis',
+        axisPointer: {
+            type: 'line'
+        }
+    },
+    // toolbox: {
+    //     show: true,
+    //     feature: {
+    //         saveAsImage: {show: true},
+    //         dataView: {show:true}
+    //     }
+    // },
+    grid: {
+        left: 2,
+        right: 10,
+        containLabel: true
+    },
+    series: getSeriesData(dailyData, 'line', 'sales')
+});
+
+var growthChart = echarts.init(document.getElementById('daily-growth-chart'));
+growthChart.setOption({
+    title: {
+        // text: '{{date}} 增长率趋势',
+    },
+    legend: {
+        // x: 'center',
+        // y: 10,
+        // left: 20,
+        top:0,
+        bottom:0,
+        padding: 0,
+        data: getLegendName(dailyData)
+    },
+    xAxis: {
+        data: {{x_axis|safe}},
+        axisLabel: {
+            interval: 0,
+            rotate: '65'
+        }
+    },
+    yAxis: {
+        name: '(%)',
+    },
+    tooltip: {
+        // backgroundColor: 'rgba(255,255,255, 1)',
+        // textStyle: {
+        //     color: '#333'
+        // },
+        // borderColor: '#ccc',
+        // borderWidth: 1,
+        trigger: 'axis',
+        axisPointer: {
+            type: 'line'
+        }
+    },
+    // toolbox: {
+    //     show: true,
+    //     feature: {
+    //         saveAsImage: {show: true},
+    //         dataView: {show:true}
+    //     }
+    // },
+    grid: {
+        left: 2,
+        right: 10,
+        containLabel: true
+    },
+    series: getSeriesData(dailyData, 'line', 'growth')
+});
+
+function barChartSeriesData(data){
+    out = []
+    for(var tag in data){
+        out.push({
+            name: data[tag]['item_name'],
+            type: 'bar',
+            // stack: '总量',
+            // label: {
+            //     normal: {
+            //         show: true,
+            //         position: 'insideRight'
+            //     }
+            // },
+            data: data[tag]['sales']
+        });
+    }
+    return out;
+}
+
+var tagsChart = echarts.init(document.getElementById('tags-chart'));
+tagsChart.setOption({
+    title: {
+        // text: '{{date}} 区域销售額趋势',
+    },
+    legend: {
+        data: getLegendName(tagsData)
+    },
+    xAxis: {
+        type: 'value',
+        name: '(RMB)',
+    },
+    yAxis: {
+        type: 'category',
+        data: tagsData[0]['item_names']
+    },
+    grid: {
+        left: '0%',
+        right: '6%',
+        bottom: '0%',
+        containLabel: true
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    // toolbox: {
+    //     show: true,
+    //     feature: {
+    //         saveAsImage: {show: true},
+    //         dataView: {show:true}
+    //     }
+    // },
+    series: barChartSeriesData(tagsData)
+});
+
+
+// end ready
+});
+
+
+</script>
+
+
+</body>
+</html>

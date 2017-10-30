@@ -1,0 +1,30 @@
+<form class="ui form">
+  <div class="field">
+    <div class="ui accordion">
+      <div class="title">
+        <i class="dropdown icon"></i>
+        过滤语法
+      </div>
+      <div class="content">
+            <div class="ui icon message">
+              <i class="inbox icon"></i>
+              <div class="content">
+                <ul>
+                    <li>列名=值1</li>
+                    <li>列名=值1,值2,值3</li>
+                    <li>列名__在=值1~值2</li>
+                    <li>用@把多个条件连起来</li>
+                    <li>列名包含*代表可以过滤</li>
+                </ul>
+                <p>例子: 供应商=统一,康师傅@规格__在=300ml~500ml@口味=西柚</p>
+              </div>
+            </div>
+            <br>
+      </div>
+    </div>
+      <div class="ui icon input">
+        <input type='text' name='q' class='ui fluid' placeholder='{%block filter_placeholder%}供应商=统一,康师傅@规格__在=300ml~500ml@口味=西柚{% endblock %}' value='{{form.q.value|default_if_none:""}}' autocomplete="off">
+        <i class="search icon"></i>
+      </div>
+  </div>
+</form>

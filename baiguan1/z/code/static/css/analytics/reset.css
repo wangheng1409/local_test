@@ -1,0 +1,14 @@
+html, body, h3, p, ul, input{
+    padding: 0;
+    margin: 0;
+}
+a{
+    text-decoration: none;
+    color: #ABAEB3;
+}
+ul{
+    list-style: none;
+}
+input, select{
+    outline: none;
+}

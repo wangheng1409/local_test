@@ -1,0 +1,77 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Match Store Items</title>
+<link href="//cdn.bootcss.com/semantic-ui/2.1.4/semantic.min.css" rel="stylesheet" type="text/css" >
+<style>
+body{
+  /*width: 1200px;*/
+    margin: 0 auto;
+    position: relative;
+}
+.container{
+    margin: 20px auto;
+    width:1000px;
+}
+
+.custom input{
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 0px;
+}
+
+.custom{
+    position: fixed;
+    right: 10%;
+    background-color: black;
+    padding: 10px;
+}
+
+ul li{
+  margin-bottom:10px;
+}
+
+.std{
+  margin-top: 5px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="tag">
+      <div>
+        <h3>## - {{tag.tag}}, {{acc_raw}} = {{accuracy}}%</h3>
+      <ul>
+      {% for item, val in out %}
+        <li>
+          <span class='ui blue label'>{{val.store_item.barcode}}</span>
+          <span class='ui yellow label'>{{val.store_item.price}}</span>
+          <span class='ui red label'>{{item}}</span>
+          {% for j in val.store_item.keywords %}
+            <span class="ui green label">{{j}}</span>
+          {% endfor %}
+
+          <div class='std'>
+            <span class='ui blue label'>{{val.standard_item.barcode}}</span>
+            <span class='ui yellow label'>{{val.standard_item.price}}</span>
+            <span class='ui red label'>{{val.standard_item.name}}</span>
+            {% for j in val.standard_item.keywords %}
+              <span class="ui green label">{{j}}</span>
+            {% endfor %}
+          </div>
+        </li>
+      {% endfor %}
+      </ul>
+    <hr>
+    </div>
+</div>
+<script src='//cdn.bootcss.com/jquery/3.1.0/jquery.min.js'></script>
+<script src='{% static "js/standard/extract_tags.js" %}'></script>
+</body>
+</html>
