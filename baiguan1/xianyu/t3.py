@@ -20,11 +20,12 @@ async def getPage(session, page,catid):
     with aiohttp.Timeout(60):
         async with session.get(url.format(page,catid), headers=headers, proxy=pm.getProxyV2()['http']) as resp:
             print(await resp.text())
-            # print(await type(resp.text()))
 
 
-loop = uvloop.new_event_loop()
-asyncio.set_event_loop(loop)
+
+# loop = uvloop.new_event_loop()
+# asyncio.set_event_loop(loop)
+loop=asyncio.get_event_loop()
 session = aiohttp.ClientSession(loop=loop)
 
 tasks = []

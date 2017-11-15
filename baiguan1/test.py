@@ -34,22 +34,26 @@
 #
 # for a,b in s.items():
 #     print(a.center(10,' '),str(b).center(10,' '),str(t[a]).center(10,' '))
+#
+# from collections import deque
+# data = deque([1,2])
+# sql_tpl = "insert xxxxx"
+# cnt = 1
+# while data:
+#     # sql = sql_tpl.format(data.popleft())
+#     # conn.execute(sql)
+#     # if cnt == 0 or not data:
+#     #     conn.commit()
+#     #     cnt = 10000
+#     # cnt -= 1
+#     data.popleft()
+#     cnt-=1
+#     if cnt == 0 or not data:
+#         print(1)
+#         cnt=2
 
-from collections import deque
-data = deque([1,2])
-sql_tpl = "insert xxxxx"
-cnt = 1
-while data:
-    # sql = sql_tpl.format(data.popleft())
-    # conn.execute(sql)
-    # if cnt == 0 or not data:
-    #     conn.commit()
-    #     cnt = 10000
-    # cnt -= 1
-    data.popleft()
-    cnt-=1
-    if cnt == 0 or not data:
-        print(1)
-        cnt=2
 
 
+# s='<dd class=\"basicInfo-item value\">\n申积军，王燕，刘洋，王艳<sup>[2]</sup><a class=\"sup-anchor\" name=\"ref_%5B2%5D_10548716\"> </a >\n</dd>'
+# s=s.split('>')[1].split('<')[0]
+# print(s)
