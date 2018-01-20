@@ -45,7 +45,7 @@ class UserInfo:
         for id in id_list:
             try:
                 # 构造url
-                url = "https://web.immomo.com/live/{id}".format(id=id)
+                url = "https://api.immomo.com/live/{id}".format(id=id)
                 # 加载网页
                 driver.get(url)
                 # 等待加载头像

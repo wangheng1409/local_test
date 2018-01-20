@@ -5,7 +5,7 @@
 import requests
 
 ret=requests.get(
-    'http://www.sf-express.com/sf-service-owf-web/service/bills/221068242424/routes?app=bill&ticket=Q1Xeg1Su2QRlxMIzWOU8AiU7sgJ6a5_XFHbYzwdBlWpkjQKtT8ab7-ZaKKqZrxfD&lang=sc&region=cn&translate=',
+    'http://www.sf-express.com/sf-service-owf-api/service/bills/221068242424/routes?app=bill&ticket=Q1Xeg1Su2QRlxMIzWOU8AiU7sgJ6a5_XFHbYzwdBlWpkjQKtT8ab7-ZaKKqZrxfD&lang=sc&region=cn&translate=',
     headers={
         'Host': 'www.sf-express.com',
         'Accept': 'application/json, text/javascript, */*; q=0.01',

@@ -8,7 +8,7 @@ urlpatterns = [
     url(r'^stores/(?P<store_id>[0-9]+)$', store_items_analytics, name = 'analytics-stores-items'),
     url(r'^stores/(?P<store_id>[0-9]+)/(?P<brand_tag_id>[0-9]+)$', store_brands_analytics, name = 'analytics-stores-brands'),
     url(r'^stores-stores$', stores_stores_compare, name = 'analytics-stores-stores-compare'),
-    url(r'^web-stores/(?P<brand_tag_id>[0-9]+)$', web_store_brands_analytics, name = 'analytics-web-stores-brands'),
+    url(r'^api-stores/(?P<brand_tag_id>[0-9]+)$', web_store_brands_analytics, name = 'analytics-api-stores-brands'),
     url(r'^chain-stores/stores/get-store-list$',stores_list,name="analytics-get-store-list"),
     url(r'^chain-stores/stores/store-detailed-info/special-items/(?P<store_id>\d+)$',store_items,name="analytics-special-commodity"),
     url(r'^chain-stores/store-overview/overall$',overall_data),

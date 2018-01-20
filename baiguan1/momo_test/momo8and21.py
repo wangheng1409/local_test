@@ -18,7 +18,7 @@ def fortune_charm(stid):
         'src'	:'url',
     }
 
-    url1='https://web.immomo.com/webmomo/api/scene/profile/infosv2'
+    url1='https://api.immomo.com/webmomo/api/scene/profile/infosv2'
 
     header1={
         'Accept': '*/*',
@@ -27,8 +27,8 @@ def fortune_charm(stid):
         'Connection': 'keep-alive',
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
         'Cookie': 's_id='+random_ssid()+'; cId=54898950411749; Hm_lvt_c391e69b0f7798b6e990aecbd611a3d4=1498548990; Hm_lpvt_c391e69b0f7798b6e990aecbd611a3d4=1498549010',
-        'Host': 'web.immomo.com',
-        'Origin': 'https://web.immomo.com',
+        'Host': 'api.immomo.com',
+        'Origin': 'https://api.immomo.com',
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.86 Safari/537.36',
         'X-Requested-With': 'XMLHttpRequest',
     }
@@ -46,7 +46,7 @@ def fortune_charm(stid):
             'token':token,
             'source':'profile',
         }
-        url2='https://web.immomo.com/webmomo/api/scene/profile/userinfo'
+        url2='https://api.immomo.com/webmomo/api/scene/profile/userinfo'
         ret = requests.post(url=url2, data=data2, verify=False, headers=header1).content.decode()
         result=json.loads(ret)
         fortune=result['data'].get('fortune','')

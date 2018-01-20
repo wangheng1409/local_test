@@ -408,28 +408,29 @@ $(\".xubox_main\").css({ \"border-radius\": \"8px\" });\n
 #             print(len(a))
 #             a=[]
 # func()
-import datetime
-import time
-
-s=int(time.time())
-print(s)
-print(datetime.datetime.utcfromtimestamp(s+3600*8))
-
-print(int('0x59b9ef42',16))
-
-start=1505292041
-end=1505357634
-print([x for x in range(start,end,86400)]+[end])
-
-s=time.mktime(time.strptime('2017-09-14', "%Y-%m-%d"))
-print(s)
-
-print('CONCURRENT_REQUESTS'.lower())
-
-delay_list=[0,1,2,5]
-concurrent_requests_list=[10,20,30,40,50]
-run_list=[]
-for d in delay_list:
-    for c in concurrent_requests_list:
-        run_list.append((d,c))
-print(run_list)
+# import datetime
+# import time
+#
+# s=int(time.time())
+# print(s)
+# print(datetime.datetime.utcfromtimestamp(s+3600*8))
+#
+# print(int('0x59b9ef42',16))
+#
+# start=1505292041
+# end=1505357634
+# print([x for x in range(start,end,86400)]+[end])
+#
+# s=time.mktime(time.strptime('2017-09-14', "%Y-%m-%d"))
+# print(s)
+#
+# print('CONCURRENT_REQUESTS'.lower())
+#
+# delay_list=[0,1,2,5]
+# concurrent_requests_list=[10,20,30,40,50]
+# run_list=[]
+# for d in delay_list:
+#     for c in concurrent_requests_list:
+#         run_list.append((d,c))
+# print(run_list)
+s={1:1}
